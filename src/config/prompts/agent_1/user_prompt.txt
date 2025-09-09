@@ -1,0 +1,7 @@
+Analyze the ticket carefully and determine which category and urgency level it best fits into:
+
+<ticket>
+{TICKET}
+</ticket>
+ 
+Return ONLY the final XML per the system instructions.

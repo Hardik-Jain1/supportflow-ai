@@ -1,0 +1,326 @@
+Ticket ID,Ticket Description,GT Ticket Type,GT Ticket Subject,GT Ticket Priority,GT Ticket Type Manual,GT Ticket Priority Manual,LLM Output,Predicted Ticket Type,Predicted Ticket Priority,Input Tokens,Output Tokens,Total Tokens,Time Taken,Correct Type Prediction,Correct Priority Prediction
+4601,"I'm having an issue with the {product_purchased}. Please assist.
+
+We cannot understand your name, please contact us to verify.
+
+I am only interested in your product, Please choose to create a survey or email me I'm concerned about the security of my {product_purchased} and would like to ensure that my data is safe.",Billing inquiry,Hardware issue,High,Compliance / Legal / Security,High (Time-Sensitive / Blocking),"<result>
+   <category>7</category>
+   <reason_for_category>The primary intent of the ticket is a concern about the security of the product and the safety of the user's data, which directly aligns with the ""Compliance / Legal / Security"" category that covers data privacy and security concerns.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The user expresses a direct concern about security and data safety, which, while not explicitly stating a breach, implies a need for prompt verification and reassurance. Security-related inquiries are time-sensitive due to potential risks, making ""High"" urgency appropriate.</reason_for_urgency_level>
+   <confidence_for_urgency_level>90</confidence_for_urgency_level>
+</result>",Compliance / Legal / Security,High (Time-Sensitive / Blocking),1220,1177,2397,8.630110264,TRUE,TRUE
+7362,"I'm having an issue with the {product_purchased}. Please assist.
+
+*
+
+* https://chrome.google.com/extensions/detail/sans/sans2/sans2-beta-1 I'm using the original charger that came with my {product_purchased}, but it's not charging properly.",Refund request,Cancellation request,Low,Technical Issues,High (Time-Sensitive / Blocking),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket reports a malfunction where the purchased product is not charging properly, which is a direct issue with the functionality of the system or device.</reason_for_category>
+   <confidence_for_category>95</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>A product not charging properly significantly restricts the customer's ability to use it, as it will eventually become unusable. This requires prompt resolution.</reason_for_urgency_level>
+   <confidence_for_urgency_level>90</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1215,975,2190,6.448215961,TRUE,TRUE
+1586,"I'm facing issues logging into my {product_purchased} account. It says my account is locked. What should I do to unlock it?
+
+The answer I got in my account setup file said that my account was locked for this I've noticed that the issue occurs consistently when I use a specific feature or application on my {product_purchased}.",Refund request,Data loss,Medium,Account Management,High (Time-Sensitive / Blocking),"<result>
+   <category>3</category>
+   <reason_for_category>The ticket explicitly states the user is ""facing issues logging into my account"" and that their ""account is locked,"" which directly falls under problems related to accessing and managing user accounts.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The user is unable to log in, meaning they are blocked from using the product or service. This significantly restricts their ability to use the product and requires prompt resolution.</reason_for_urgency_level>
+   <confidence_for_urgency_level>100</confidence_for_urgency_level>
+</result>",Account Management,High (Time-Sensitive / Blocking),1220,620,1840,3.903657913,TRUE,TRUE
+7070,"I've noticed a software bug in the {product_purchased} app. It's causing data loss and unexpected errors. How can I resolve this issue? Try running the app from the command line.
+
+Install
+
+$ bin. I'm not sure if this issue is specific to my device or if others have reported similar problems.",Billing inquiry,Network problem,Low,Technical Issues,"High (Time-Sensitive / Blocking)
+Critical (Emergency / Escalation)","<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly reports a ""software bug"" causing ""data loss and unexpected errors,"" which directly relates to malfunctions and errors preventing proper use of the product. This aligns perfectly with the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>4</urgency>
+   <reason_for_urgency_level>The mention of ""data loss"" indicates a severe and urgent issue. Data loss represents a high risk and requires immediate attention and resolution, fitting the description of a Critical urgency level.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Technical Issues,Critical (Emergency / Escalation),1216,1118,2334,7.408650875,TRUE,TRUE
+1578,"I'm having an issue with the {product_purchased}. Please assist. Thanks.
+
+4. How do you respond to feedback about products that aren't listed?
+
+I try and avoid products on the sites that don't list I'm concerned about the security of my {product_purchased} and would like to ensure that my data is safe.",Technical issue,Delivery problem,Medium,Compliance / Legal / Security,Critical (Emergency / Escalation),"<result>
+   <category>7</category>
+   <reason_for_category>The ticket explicitly states a concern about the ""security"" of the purchased product and the desire to ""ensure that my data is safe,"" which directly aligns with the definition of the Compliance / Legal / Security category.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>4</urgency>
+   <reason_for_urgency_level>Security concerns, even if not a confirmed breach, are inherently high-risk and require immediate attention to prevent potential data compromise or address serious customer anxiety, fitting the ""Critical"" urgency level.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Compliance / Legal / Security,Critical (Emergency / Escalation),1222,1084,2306,7.168158293,TRUE,TRUE
+1420,"I'm having an issue with the {product_purchased}. Please assist.
+
+There are 3 people here who need an address and a PayPal address.
+
+Hello, everyone.
+
+It's been a while since I finished my I've noticed that the issue occurs consistently when I use a specific feature or application on my {product_purchased}.",Cancellation request,Product compatibility,Medium,Technical Issues,"Medium (Routine)
+High (Time-Sensitive / Blocking)","<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states ""I'm having an issue with the {product_purchased}"" and ""the issue occurs consistently when I use a specific feature or application,"" which directly indicates a malfunction or bug within the product's functionality.</reason_for_category>
+   <confidence_for_category>90</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The issue is described as occurring ""consistently"" when using a ""specific feature or application,"" implying a persistent problem that likely restricts or prevents the customer from effectively using that part of the product, thus warranting a high urgency.</reason_for_urgency_level>
+   <confidence_for_urgency_level>85</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1220,1054,2274,7.084546804,TRUE,TRUE
+2500,"I've recently set up my {product_purchased}, but it fails to connect to any available networks. What steps should I take to troubleshoot this issue? - You can try sending an email with code: phreak@debian I'm unable to find the option to perform the desired action in the {product_purchased}. Could you please guide me through the steps?",Cancellation request,Product setup,High,Product/Service Inquiry,High (Time-Sensitive / Blocking),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states that the product ""fails to connect to any available networks,"" which is a clear malfunction preventing its proper use. The user is seeking troubleshooting steps for this issue, directly aligning with the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The product's inability to connect to networks means it is not functioning as intended, significantly restricting or blocking the customer's ability to use the product. This requires prompt resolution.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1224,704,1928,4.693835735,FALSE,TRUE
+7684,"I'm encountering a software bug in the {product_purchased}. Whenever I try to perform a specific action, the application crashes. Are there any updates or fixes available?
+
+I'm being paid, but there is an error reporting system I've already contacted customer support multiple times, but the issue remains unresolved.",Technical issue,Delivery problem,High,Technical Issues,High (Time-Sensitive / Blocking),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states ""I'm encountering a software bug"" and ""the application crashes,"" which directly falls under reports of malfunctions, bugs, errors, or system crashes that prevent proper use of the product or service.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The application crashing when performing a specific action indicates a significant restriction on the customer's ability to use the product. The fact that the issue remains unresolved despite multiple contacts also elevates its urgency, requiring prompt resolution to prevent further dissatisfaction.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1212,683,1895,4.358660698,TRUE,TRUE
+3472,"My {product_purchased} is making strange noises and not functioning properly. I suspect there might be a hardware issue. Can you please help me with this? Please make sure not to enter for this update until I've reached the correct status The issue I'm facing is intermittent. Sometimes it works fine, but other times it acts up unexpectedly.",Product inquiry,Software bug,Low,Product/Service Inquiry,"High (Time-Sensitive / Blocking)
+Medium (Routine)","<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states the product is ""making strange noises and not functioning properly"" and suspects a ""hardware issue."" This directly indicates a malfunction or error related to the product's functionality, fitting the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The product is ""not functioning properly,"" which means its core utility is compromised. Although the issue is ""intermittent,"" it still ""significantly restricts"" the customer's ability to reliably use the product, requiring prompt resolution to prevent dissatisfaction.</reason_for_urgency_level>
+   <confidence_for_urgency_level>90</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1218,862,2080,5.264261007,FALSE,TRUE
+8302,"I'm having an issue with the {product_purchased}. Please assist. Please notify me if any additional issues are occurring (if not, I'll update the post). ~~~~~ # ######################################################### # The Product ID of I'm unable to find the option to perform the desired action in the {product_purchased}. Could you please guide me through the steps?",Product inquiry,Product compatibility,High,Product/Service Inquiry,"High (Time-Sensitive / Blocking)
+Medium (Routine)","<result>
+   <category>4</category>
+   <reason_for_category>The user is unable to find an option to perform a desired action and is requesting guidance on how to do so. This indicates a need for clarification or steps on product usage, fitting the description of a Product/Service Inquiry.</reason_for_category>
+   <confidence_for_category>95</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The user states they are ""unable to find the option to perform the desired action,"" which implies a blockage or significant restriction in their ability to use a specific feature of the product. This requires prompt resolution to enable them to proceed.</reason_for_urgency_level>
+   <confidence_for_urgency_level>85</confidence_for_urgency_level>
+</result>",Product/Service Inquiry,High (Time-Sensitive / Blocking),1226,1554,2780,8.797831059,TRUE,TRUE
+4473,"I'm having an issue with the {product_purchased}. Please assist.
+
+A little while ago, I had to send an email to Microsoft. I emailed them and said I'll send an email to the product group when the customer I've noticed a peculiar error message popping up on my {product_purchased} screen. It says '{error_message}'. What does it mean?",Billing inquiry,Display issue,Low,Technical Issues,"Low (Informational / Non-urgent)
+Medium (Routine)","<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states the customer is ""having an issue"" and has ""noticed a peculiar error message popping up."" This directly indicates a malfunction or problem with the product's functionality, aligning with the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>95</confidence_for_category>
+   <urgency>2</urgency>
+   <reason_for_urgency_level>The presence of an ""error message"" suggests an unexpected behavior or malfunction that requires attention. While the ticket doesn't specify if the error is blocking functionality, it indicates an inconvenience that needs to be addressed, making it more than informational but not necessarily critical without further details on impact.</reason_for_urgency_level>
+   <confidence_for_urgency_level>85</confidence_for_urgency_level>
+</result>",Technical Issues,Medium (Routine),1228,902,2130,5.531370163,TRUE,TRUE
+5376,"The {product_purchased} is unable to establish a stable internet connection. It keeps disconnecting intermittently. How can I troubleshoot this network problem? I've recently updated the firmware of my {product_purchased}, and the issue started happening afterward. Could it be related to the update?",Refund request,Battery life,Critical,Technical Issues,"High (Time-Sensitive / Blocking)
+Critical (Emergency / Escalation)","<result>
+   <category>2</category>
+   <reason_for_category>The ticket describes a malfunction where the product cannot maintain a stable internet connection and disconnects intermittently, directly impacting its functionality. This aligns with the definition of ""Technical Issues"" which covers reports of malfunctions, bugs, or errors preventing proper use.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The inability to establish a stable internet connection and intermittent disconnections significantly restrict the customer's ability to use the product, especially if internet connectivity is crucial for its operation. This requires prompt resolution, fitting the ""High"" urgency level.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1205,764,1969,4.663776875,TRUE,TRUE
+4970,"I'm having an issue with the {product_purchased}. Please assist. This will reduce the total sales per week for @$40 to $46 per customer.
+
+[Update: We've fixed this by changing $60 into $ I'm unable to find the option to perform the desired action in the {product_purchased}. Could you please guide me through the steps?",Cancellation request,Display issue,Low,Product/Service Inquiry,Medium (Routine),"<result>
+   <category>4</category>
+   <reason_for_category>The ticket's primary intent, especially after the update, is a request for guidance on how to use a specific feature or find an option within the product (""I'm unable to find the option to perform the desired action... Could you please guide me through the steps?""). This directly aligns with the ""Product/Service Inquiry"" category, which covers questions about product features, capabilities, and usage.</reason_for_category>
+   <confidence_for_category>95</confidence_for_category>
+   <urgency>2</urgency>
+   <reason_for_urgency_level>The customer mentions a potential business impact (""This will reduce the total sales per week""), indicating that their inability to perform the desired action is causing more than a minor inconvenience. While not a complete block, it affects their operations and warrants timely assistance to mitigate further negative consequences, fitting the ""Medium"" urgency level.</reason_for_urgency_level>
+   <confidence_for_urgency_level>90</confidence_for_urgency_level>
+</result>",Product/Service Inquiry,Medium (Routine),1229,1684,2913,8.950509548,TRUE,TRUE
+7580,"My {product_purchased} is making strange noises and not functioning properly. I suspect there might be a hardware issue. Can you please help me with this? Thank you! Thanks again for your help.
+
+I'm currently in the I've noticed that the issue occurs consistently when I use a specific feature or application on my {product_purchased}.",Cancellation request,Software bug,Critical,Technical Issues,High (Time-Sensitive / Blocking),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket describes a malfunction (""making strange noises and not functioning properly"") and suspects a ""hardware issue,"" which directly aligns with the definition of Technical Issues covering reports of malfunctions, bugs, errors, or system crashes that prevent proper use of the product.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The product is ""not functioning properly"" and the issue occurs ""consistently,"" indicating a significant problem that blocks or significantly restricts the customer's ability to use the product. This requires prompt resolution, classifying it as High urgency.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1220,617,1837,3.769917488,TRUE,TRUE
+5372,"I'm having an issue with the {product_purchased}. Please assist.
+
+
+[20:37:22 PM] [Client thread/INFO] [PunisherPackManager]: Failed to connect to UnlockedPunisher package I've tried troubleshooting steps mentioned in the user manual, but the issue persists.",Billing inquiry,Network problem,Low,Technical Issues,"Medium (Routine)
+High (Time-Sensitive / Blocking)","<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states ""I'm having an issue with the {product_purchased}"" and includes a log message indicating a ""Failed to connect"" error, which directly points to a malfunction preventing the proper use of the product or service.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The user is experiencing a persistent issue (""the issue persists"") that prevents the product from connecting to a necessary package, indicating a significant restriction or blockage in their ability to use the purchased product. This requires prompt resolution.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1213,725,1938,4.339505434,TRUE,TRUE
+7378,"I'm having an issue with the {product_purchased}. Please assist. (4) There are no refunds or exchanges for this item.
+
+This item doesn't belong on this page. I've tried troubleshooting steps mentioned in the user manual, but the issue persists.",Refund request,Product setup,Critical,"Technical Issues
+Billing & Payments",High (Time-Sensitive / Blocking),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states ""I'm having an issue with the {product_purchased}"" and ""the issue persists"" after troubleshooting, indicating a malfunction or error with the product's functionality or display. This aligns directly with the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>95</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The user is ""having an issue"" with the product that ""persists"" despite troubleshooting, implying that their ability to use the product is blocked or significantly restricted. This warrants a High urgency level for prompt resolution.</reason_for_urgency_level>
+   <confidence_for_urgency_level>90</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1204,1113,2317,6.60581398,TRUE,TRUE
+6728,"I've encountered a data loss issue with my {product_purchased}. All the files and documents seem to have disappeared. Can you guide me on how to retrieve them?
+
+If you have a ""download_metadata"" error but have I've checked for software updates, and my {product_purchased} is already running the latest version.",Product inquiry,Installation support,High,Compliance / Legal / Security,Critical (Emergency / Escalation),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly reports a ""data loss issue"" where ""All the files and documents seem to have disappeared"" and mentions a ""download_metadata"" error. These are clear indicators of malfunctions and errors preventing the proper use of the product, fitting the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The loss of ""All the files and documents"" signifies a severe problem that significantly restricts the customer's ability to use the product. This issue requires prompt resolution to restore functionality and prevent major customer dissatisfaction, aligning with the ""High"" urgency level.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1218,873,2091,5.232037544,FALSE,FALSE
+7997,"I'm having an issue with the {product_purchased}. Please assist.
+
+If you're having an issue with the {product_purchased}. Please assist.
+
+I am a member of the ""Yuppie Generation I've noticed that the issue occurs consistently when I use a specific feature or application on my {product_purchased}.",Billing inquiry,Network problem,Critical,Technical Issues,High (Time-Sensitive / Blocking),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states ""I'm having an issue"" and ""the issue occurs consistently when I use a specific feature or application,"" which directly indicates a malfunction or bug related to the product's functionality.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The issue occurs ""consistently when I use a specific feature or application,"" implying a persistent functional problem. This likely restricts or significantly impacts the customer's ability to use that particular part of the product, requiring prompt resolution.</reason_for_urgency_level>
+   <confidence_for_urgency_level>85</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1219,1189,2408,7.158908367,TRUE,TRUE
+7796,"I'm having an issue with the {product_purchased}. Please assist. */ } @InventoryService $inventory = @( 'inventory.com.brigot.products' ) -> get (); while (! @inventory -> is I've followed online tutorials and community forums to troubleshoot the issue, but no luck so far.",Cancellation request,Data loss,Critical,Technical Issues,High (Time-Sensitive / Blocking),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states ""I'm having an issue with the {product_purchased}"" and mentions troubleshooting attempts, indicating a problem with the functionality or operation of the product. The presence of code-like snippets further suggests a technical malfunction.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The customer is experiencing an ""issue"" with the product and has already attempted troubleshooting without success, implying that their ability to use the product is blocked or significantly restricted, requiring prompt resolution.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1213,914,2127,5.516913652,TRUE,TRUE
+5003,"I'm having an issue with the {product_purchased}. Please assist.
+
+-
+
+What was it originally designed for?
+
+Originally and hopefully in development, it was a means to create a ""full stack"" product at I've checked for software updates, and my {product_purchased} is already running the latest version.",Product inquiry,Payment issue,Medium,Product/Service Inquiry,Medium (Routine),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states, ""I'm having an issue with the {product_purchased}. Please assist."" and mentions checking for software updates, which are clear indicators of a technical problem or malfunction with the product's functionality.</reason_for_category>
+   <confidence_for_category>95</confidence_for_category>
+   <urgency>2</urgency>
+   <reason_for_urgency_level>The ticket reports an ""issue"" but does not specify its severity or whether it blocks essential functionality. It appears to be a routine problem report that requires timely action but is not described as critical or blocking.</reason_for_urgency_level>
+   <confidence_for_urgency_level>85</confidence_for_urgency_level>
+</result>",Technical Issues,Medium (Routine),1216,1112,2328,7.166256905,FALSE,TRUE
+823,"I'm unable to access my {product_purchased} account. It keeps displaying an 'Invalid Credentials' error, even though I'm using the correct login information. How can I regain access to my account?
+
+You're I've already contacted customer support multiple times, but the issue remains unresolved.",Billing inquiry,Product recommendation,Medium,Account Management,High (Time-Sensitive / Blocking),"<result>
+   <category>3</category>
+   <reason_for_category>The ticket explicitly states the user is ""unable to access my {product_purchased} account"" due to an 'Invalid Credentials' error. This directly falls under Account Management, which covers issues related to accessing and managing user accounts, such as login failures.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The user is completely blocked from accessing their account, which significantly restricts their ability to use the product or service. The mention of multiple unresolved contacts further indicates the severity and the need for prompt resolution.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Account Management,High (Time-Sensitive / Blocking),1211,792,2003,4.898892879,TRUE,TRUE
+7162,I'm having an issue with the {product_purchased}. Please assist. This problem started occurring after the recent software update. I haven't made any other changes to the device.,Product inquiry,Data loss,Low,Technical Issues,Medium (Routine),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states the customer is ""having an issue with the {product_purchased}"" and links it to a ""recent software update,"" indicating a malfunction or bug in the product's functionality. This directly aligns with the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>98</confidence_for_category>
+   <urgency>2</urgency>
+   <reason_for_urgency_level>The ticket reports an ""issue"" that requires assistance, suggesting it's more than a minor inconvenience or informational request. However, it does not specify that the issue is blocking essential functionality or is a critical emergency, making it fall into the routine category that requires timely action but is not critical.</reason_for_urgency_level>
+   <confidence_for_urgency_level>85</confidence_for_urgency_level>
+</result>",Technical Issues,Medium (Routine),1185,1007,2192,5.922071934,TRUE,TRUE
+8376,"I'm having an issue with the {product_purchased}. Please assist.
+
+}
+
+} else {
+
+if ($ProductManager['price'])
+
+{
+
+this.show($product_purchased, I've recently updated the firmware of my {product_purchased}, and the issue started happening afterward. Could it be related to the update?",Cancellation request,Display issue,Medium,Technical Issues,Medium (Routine),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states the customer is ""having an issue"" with a product and links it to a recent firmware update, indicating a malfunction or error related to the product's functionality. This directly aligns with the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>95</confidence_for_category>
+   <urgency>2</urgency>
+   <reason_for_urgency_level>The customer is reporting an ""issue"" and asking for assistance, which implies an inconvenience affecting their use of the product. However, the ticket does not specify if the issue is blocking essential functionality or is critical, making it fall under a routine matter rather than a high or critical urgency.</reason_for_urgency_level>
+   <confidence_for_urgency_level>85</confidence_for_urgency_level>
+</result>",Technical Issues,Medium (Routine),1219,914,2133,5.122843742,TRUE,TRUE
+3585,"I'm having an issue with the {product_purchased}. Please assist. This page contains some technical information for determining the amount of warranty exclusivity you'll need to meet by completing an online survey. If your device or computer contains an issue I've followed the troubleshooting steps mentioned in the user manual, but the issue persists.",Billing inquiry,Refund request,Critical,Billing & Payments,High (Time-Sensitive / Blocking),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states ""I'm having an issue with the {product_purchased}"" and that ""the issue persists"" despite following troubleshooting steps. This directly indicates a malfunction or problem with the product's functionality, aligning with the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The customer reports a persistent issue with a purchased product, even after attempting troubleshooting. This suggests the problem is significantly impacting their ability to use the product, requiring prompt resolution to restore functionality, which aligns with a High urgency level.</reason_for_urgency_level>
+   <confidence_for_urgency_level>90</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1214,1069,2283,6.424451828,FALSE,TRUE
+8323,"My {product_purchased} crashed, and I lost all the data stored on it. Is there any way to recover the lost data?
+
+The solution: use your browser's data recovery feature to recover the data only if you've I rely heavily on my {product_purchased} for my daily tasks, and this issue is hindering my productivity.",Product inquiry,Account access,Low,Technical Issues,"High (Time-Sensitive / Blocking)
+Critical (Emergency / Escalation)","<result>
+   <category>2</category>
+   <reason_for_category>The ticket clearly describes a malfunction (""{product_purchased} crashed"") and a loss of functionality/data (""lost all the data stored on it""), which directly falls under the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The user states that the issue is ""hindering my productivity"" and they ""rely heavily"" on the product for daily tasks, indicating that their ability to use the product is significantly restricted, requiring prompt resolution.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1220,904,2124,5.445384979,TRUE,TRUE
+6915,"I'm having an issue with the {product_purchased}. Please assist. I've already contacted customer support multiple times, but the issue remains unresolved.",Cancellation request,Battery life,Medium,General / Other,High (Time-Sensitive / Blocking),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states ""I'm having an issue with the {product_purchased}"", indicating a problem with the functionality or operation of a product, which aligns directly with the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>95</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The customer mentions contacting support ""multiple times"" and that the issue ""remains unresolved,"" which suggests a persistent problem that is significantly impacting their ability to use the product and requires prompt resolution to prevent further dissatisfaction.</reason_for_urgency_level>
+   <confidence_for_urgency_level>90</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1179,877,2056,5.323200226,FALSE,TRUE
+5583,"I'm having an issue with the {product_purchased}. Please assist.
+
+Please provide a screenshot or audio if you see a bug and/or issue. Email: bug@wix.com
+
+Thanks!
+
+Please I need assistance as soon as possible because it's affecting my work and productivity.",Product inquiry,Display issue,High,Technical Issues,High (Time-Sensitive / Blocking),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states the customer is ""having an issue with the {product_purchased}"" and that it's ""affecting my work and productivity,"" which indicates a malfunction or problem preventing proper use of the product, aligning with Technical Issues.</reason_for_category>
+   <confidence_for_category>95</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The customer states the issue is ""affecting my work and productivity"" and requests assistance ""as soon as possible,"" indicating a significant restriction on their ability to use the product, which requires prompt resolution.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1210,865,2075,5.526128292,TRUE,TRUE
+4874,"I'm having an issue with the {product_purchased}. Please assist. 1. Create a customer account. 2. Go to customer_account.php in your app.
+
+That's it. Have fun! I've checked the device settings and made sure that everything is configured correctly.",Billing inquiry,Product recommendation,Medium,General / Other,"Low (Informational / Non-urgent)
+Medium (Routine)","<result>
+   <category>2</category>
+   <reason_for_category>The ticket explicitly states ""I'm having an issue with the {product_purchased}"", which directly indicates a problem with the functionality or operation of the product, aligning with the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>90</confidence_for_category>
+   <urgency>2</urgency>
+   <reason_for_urgency_level>The user reports an ""issue"" and requests ""assist,"" indicating a problem that requires attention. However, the ticket does not specify the impact or severity, nor does it suggest that the issue is blocking essential functionality or is critical, making it a routine matter rather than high or critical.</reason_for_urgency_level>
+   <confidence_for_urgency_level>80</confidence_for_urgency_level>
+</result>",Technical Issues,Medium (Routine),1210,1176,2386,7.7822299,FALSE,TRUE
+1384,"I'm having trouble connecting my {product_purchased} to my home Wi-Fi network. It doesn't detect any networks, although other devices are connecting fine. What can be done to resolve this issue?
+
+We can do everything I've performed a factory reset on my {product_purchased}, hoping it would resolve the problem, but it didn't help.",Technical issue,Account access,Low,Technical Issues,High (Time-Sensitive / Blocking),"<result>
+   <category>2</category>
+   <reason_for_category>The ticket describes a malfunction where the product cannot connect to Wi-Fi, preventing its proper use. This directly aligns with the definition of Technical Issues, which covers reports of malfunctions or errors.</reason_for_category>
+   <confidence_for_category>100</confidence_for_category>
+   <urgency>3</urgency>
+   <reason_for_urgency_level>The user is unable to connect their product to the internet, which likely blocks or significantly restricts their ability to use the product's core functionalities. This issue requires prompt resolution to restore usability.</reason_for_urgency_level>
+   <confidence_for_urgency_level>95</confidence_for_urgency_level>
+</result>",Technical Issues,High (Time-Sensitive / Blocking),1225,599,1824,4.193104506,TRUE,TRUE
+7921,"I'm having an issue with the {product_purchased}. Please assist.
+
+Click here to contact us. I'm not sure if this issue is specific to my device or if others have reported similar problems.",Technical issue,Product recommendation,Critical,,,"<result>
+   <category>2</category>
+   <reason_for_category>The user explicitly states ""I'm having an issue with the {product_purchased}"", which indicates a problem with the functionality or operation of the product, aligning directly with the definition of Technical Issues.</reason_for_category>
+   <confidence_for_category>95</confidence_for_category>
+   <urgency>2</urgency>
+   <reason_for_urgency_level>The ticket reports an ""issue"" requiring assistance, but does not specify the severity or impact (e.g., if it's blocking essential functionality or a critical outage). Without further details, it's classified as a routine problem that needs timely action but is not critical or an emergency.</reason_for_urgency_level>
+   <confidence_for_urgency_level>75</confidence_for_urgency_level>
+</result>",Technical Issues,Medium (Routine),1191,990,2181,5.68875742,FALSE,FALSE

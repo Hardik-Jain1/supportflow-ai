@@ -1,0 +1,68 @@
+<kbdocs>
+    <doc>
+        <title>Steps to Reset Your Forgotten Account Password</title>
+        <type>Troubleshooting Guide</type>
+        <content>If you have forgotten your account password, follow these steps to regain access. First, navigate to the login page of our platform. Below the login fields, you will find a link labeled "Forgot Password?" or "Reset Password." Click on this link. You will then be prompted to enter the email address associated with your account. Ensure you enter the correct email address and submit the form. An email containing a password reset link will be sent to that address. Please check your inbox, including your spam or junk folders, for this email. Click on the provided link within the email. This link will direct you to a secure page where you can create a new password. Your new password must meet our security requirements, typically including a minimum length and a mix of character types. Confirm your new password and save the changes. You should then be able to log in with your updated credentials. If you do not receive the email within a few minutes, please try the process again or contact support.</content>
+    </doc>
+    <doc>
+        <title>How to Update Your Profile Information</title>
+        <type>Article</type>
+        <content>Keeping your profile information current is important for a smooth experience with our services. This guide explains how to update details such as your name, contact information, or billing address. To begin, log in to your account using your current username and password. Once logged in, locate the "Settings," "Profile," or "Account Management" section, usually accessible from a navigation menu or by clicking on your profile icon. Within this section, you will find various sub-sections for different types of information. For example, "Personal Details" might allow you to change your name or date of birth, while "Contact Information" lets you update your email address or phone number. Make the necessary changes in the respective fields. After modifying any information, always remember to click the "Save Changes" or "Update Profile" button to ensure your new details are recorded. Some changes, like updating your primary email, may require an additional verification step for security purposes. Regularly reviewing your profile ensures all communications and services are directed correctly.</content>
+    </doc>
+    <doc>
+        <title>Troubleshooting Common Account Login Issues</title>
+        <type>Troubleshooting Guide</type>
+        <content>Experiencing difficulty logging into your account can be frustrating. This guide addresses common login problems and provides solutions. First, double-check your username and password for any typos. Passwords are case-sensitive. If you are certain of your credentials but still cannot log in, try clearing your browser's cache and cookies, then attempt to log in again. Sometimes, outdated browser data can interfere with the login process. If your account has been locked due to multiple failed login attempts, you may need to wait a specific period before trying again, or use the "Forgot Password" option to reset it, which often unlocks the account. Ensure your internet connection is stable. If you are using a VPN, try disabling it temporarily to see if it resolves the issue. If none of these steps work, and you are not receiving password reset emails, it is possible your account email address is incorrect or there is a system-wide issue. In such cases, please contact our support team with your registered email address and any error messages you received.</content>
+    </doc>
+    <doc>
+        <title>Enhancing Your Account Security Best Practices</title>
+        <type>Article</type>
+        <content>Protecting your account from unauthorized access is crucial. Adopting strong security practices significantly reduces risks. Start by creating a unique and complex password for your account. Avoid using easily guessable information like birthdays or common words. A strong password should be at least 12 characters long and include a mix of uppercase and lowercase letters, numbers, and symbols. Never reuse passwords across multiple online services. Enable Two-Factor Authentication (2FA) whenever available. This adds an extra layer of security by requiring a second verification step, such as a code from your phone, in addition to your password. Be vigilant against phishing attempts; always verify the sender of emails requesting account information and never click suspicious links. Log out of your account, especially on public or shared computers, to prevent others from accessing your session. Regularly review your account activity for any unfamiliar logins or changes. Keeping your operating system and browser updated also helps protect against vulnerabilities.</content>
+    </doc>
+    <doc>
+        <title>Frequently Asked Questions About Changing Your Primary Email</title>
+        <type>FAQ</type>
+        <content>Q: How do I change the primary email address associated with my account?
+A: Log in to your account, navigate to the "Settings" or "Profile" section, and look for "Contact Information" or "Email Address." Enter your new email address and follow the on-screen prompts. You will typically receive a verification email at the new address to confirm the change.
+
+Q: Why do I need to verify my new email address?
+A: Email verification is a security measure to ensure that the person making the change is the legitimate account owner and that the new email address is valid and accessible to you. This prevents unauthorized changes to your account.
+
+Q: What happens if I don't receive the verification email?
+A: First, check your spam or junk folders. Ensure the new email address you entered is correct. If you still don't receive it, you might be able to request a resend from your account settings, or you may need to contact customer support for assistance.
+
+Q: Can I revert to my old email address after changing it?
+A: Yes, you can usually change your email address back to a previous one by following the same process, provided the old email address is still valid and accessible for verification.
+
+Q: Will changing my email affect my login history or saved data?
+A: No, changing your primary email address only updates your contact information and login credential. Your account history, preferences, and any saved data will remain intact and associated with your account.</content>
+    </doc>
+    <doc>
+        <title>Guide to Setting Up Two-Factor Authentication (2FA)</title>
+        <type>Article</type>
+        <content>Two-Factor Authentication (2FA) adds a critical layer of security to your account by requiring two forms of verification before granting access. This guide will walk you through enabling 2FA. First, log in to your account and navigate to the "Security Settings" or "Account Security" section, usually found within your main profile or settings menu. Look for an option labeled "Two-Factor Authentication," "2FA," or "Multi-Factor Authentication." Click to enable it. You will typically be presented with choices for your second factor, such as using an authenticator app (like Google Authenticator or Authy) or receiving codes via SMS to your registered phone number. If choosing an authenticator app, you will scan a QR code with the app to link it to your account. If choosing SMS, you will enter your phone number and verify it with a code sent to you. After setup, you will be provided with recovery codes. It is crucial to save these codes in a secure, offline location, as they are essential for regaining access if you lose your primary 2FA device. Once enabled, every login will require both your password and the second factor.</content>
+    </doc>
+    <doc>
+        <title>Account Deactivation and Data Retention Policy Overview</title>
+        <type>Policy Note</type>
+        <content>This policy outlines the process for account deactivation and our approach to data retention. Users wishing to deactivate their account can typically do so through their account settings under a "Delete Account" or "Deactivate Account" option. Alternatively, a formal request can be submitted to our support team via the designated contact method. Upon deactivation, access to your account will be immediately terminated. We adhere to strict data retention policies to comply with legal obligations and for legitimate business purposes. While your public profile and most personal data will be removed or anonymized shortly after deactivation, certain transactional data, support communications, and data required for legal or auditing purposes may be retained for a specified period, typically up to X years, in accordance with applicable laws and regulations. This retained data is kept securely and is not used for active service provision. Reinstatement of a deactivated account may be possible within a limited timeframe, but a fully deleted account cannot be recovered. We encourage users to download any personal data they wish to keep before initiating deactivation.</content>
+    </doc>
+    <doc>
+        <title>Managing Your Account Notification Preferences</title>
+        <type>FAQ</type>
+        <content>Q: How can I control the types of notifications I receive?
+A: To manage your notification preferences, log in to your account and go to the "Settings" or "Profile" section. Look for a sub-section labeled "Notifications," "Communication Preferences," or "Alerts." Here, you can typically toggle on or off various types of notifications, such as marketing emails, service updates, security alerts, or in-app notifications.
+
+Q: What types of notifications can I usually manage?
+A: Common notification types include email notifications (for promotions, account activity, or newsletters), push notifications (for mobile apps), and sometimes SMS alerts. You can often customize these based on categories like transactional, promotional, or security-related.
+
+Q: Can I opt out of all notifications?
+A: While you can opt out of most promotional and non-essential communications, certain service-related or security-critical notifications (e.g., password reset confirmations, terms of service updates, or critical security alerts) are mandatory and cannot be disabled to ensure the security and functionality of your account.
+
+Q: If I unsubscribe from emails, will it affect in-app notifications?
+A: Generally, email subscriptions and in-app notification settings are managed separately. Unsubscribing from emails will typically only affect email communications. You would need to adjust in-app notification settings within the app or your account preferences.
+
+Q: How long does it take for changes to my notification preferences to take effect?
+A: Most changes to notification preferences are applied immediately. However, for some email lists, it might take up to 24-48 hours for the changes to fully propagate through our systems and for you to stop receiving previously scheduled communications.</content>
+    </doc>
+</kbdocs>

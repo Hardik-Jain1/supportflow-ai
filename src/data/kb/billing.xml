@@ -1,0 +1,50 @@
+<kbdocs>
+    <doc>
+        <title>Understanding Your Monthly Billing Statement</title>
+        <type>Article</type>
+        <content>Your monthly billing statement provides a detailed breakdown of all charges and activities related to your account. It is designed to be clear and transparent, helping you understand exactly what you are paying for. Key sections typically include the service period, which indicates the dates covered by the bill, and a summary of previous balance, payments received, and new charges. The new charges section details all services used, subscriptions, one-time fees, and any applicable taxes. You will also find your total amount due and the payment due date. If you have any promotional discounts or credits, these will be clearly itemized. We recommend reviewing your statement each month to ensure accuracy. Should you have questions about specific line items, please refer to our support portal or contact our billing department with your account number and the specific charge in question.</content>
+    </doc>
+    <doc>
+        <title>How to Update Your Payment Method</title>
+        <type>Troubleshooting Guide</type>
+        <content>Keeping your payment information current is essential to avoid service interruptions. Follow these steps to update your payment method: First, log in to your account portal using your registered email address and password. Once logged in, navigate to the "Billing" or "Payment Methods" section, usually found under "My Account" or "Settings." Here, you will see your currently saved payment methods. To add a new card or bank account, select the "Add New Payment Method" option. Enter the required details, such as card number, expiration date, CVV, or bank account information. After entering the new details, you will typically have the option to set this new method as your default for future payments. Review all information for accuracy before saving your changes. A confirmation message will usually appear once your payment method has been successfully updated. If you encounter any issues, ensure your browser is updated or try clearing your cache and cookies.</content>
+    </doc>
+    <doc>
+        <title>Policy for Service Refund Requests</title>
+        <type>Policy Note</type>
+        <content>Our refund policy is designed to be fair and transparent. Refunds for services are generally considered within 30 days of the initial purchase or subscription start date, provided the service has not been substantially used or activated. For recurring subscriptions, refunds are typically not issued for partial months or periods already billed, but future billing can be cancelled. One-time purchases may be eligible for a full refund if the request is made within 14 days and the product or service has not been utilized. To request a refund, you must contact our customer support team with your account details, order number, and a clear explanation of your request. All refund requests are subject to review and approval by our billing department. Approved refunds will be processed back to the original payment method within 5-10 business days, though processing times may vary depending on your financial institution.</content>
+    </doc>
+    <doc>
+        <title>Resolving a Double Charge on Your Account</title>
+        <type>Troubleshooting Guide</type>
+        <content>If you believe you have been double charged for a service, please follow these steps to investigate and resolve the issue. First, carefully review your bank or credit card statement to confirm that two identical charges from our company appear on the same date or within a very close timeframe. Compare these charges against your invoices or billing history in your account portal to ensure they are not separate, legitimate transactions. Note down the exact dates, amounts, and any transaction IDs associated with the duplicate charges. Once you have gathered this information, contact our billing support team immediately. Provide them with your account number and all the details you collected. Our team will investigate the charges and, if a double charge is confirmed, will process a refund for the erroneous transaction promptly. Please allow 3-5 business days for the investigation and resolution process.</content>
+    </doc>
+    <doc>
+        <title>Payment Due Dates and Late Fee Policy</title>
+        <type>Policy Note</type>
+        <content>To ensure continuous service, all payments are due on the date specified on your monthly billing statement. This due date is typically 15 days after your billing cycle closes. If payment is not received by the due date, your account will be considered past due. A grace period of 5 days may be extended, after which a late fee will be applied to your outstanding balance. The late fee is typically 1.5% of the unpaid balance or a fixed amount, whichever is greater, and will be clearly itemized on your next billing statement. Continued non-payment may result in the suspension or termination of your services. To avoid late fees and service interruption, please ensure your payment method is up to date and that funds are available on or before your due date. You can set up automatic payments through your account portal for convenience.</content>
+    </doc>
+    <doc>
+        <title>Payment Methods and Credit Card Management FAQ</title>
+        <type>FAQ</type>
+        <content>"Q: How do I update my credit card information?
+A: You can update your credit card details by logging into your account portal. Navigate to the """"Billing & Payments"""" section, then select """"Payment Methods."""" You will see an option to edit your existing card or add a new one.
+Q: Can I use a different payment method for my subscription?
+A: Yes, we accept major credit cards (Visa, MasterCard, American Express, Discover) and PayPal for recurring subscriptions. You can change your preferred payment method in the """"Payment Methods"""" section of your account.
+Q: What happens if my payment method expires?
+A: We will send you an email notification before your card expires, prompting you to update your details. If your payment method expires and we are unable to process your payment, your service may be temporarily suspended until a valid payment method is provided.
+Q: Is my payment information secure?
+A: Absolutely. We use industry-standard encryption and security protocols to protect your payment information. Your card details are tokenized and never stored directly on our servers"</content>
+    </doc>
+    <doc>
+        <title>Accessing Your Billing History and Past Invoices</title>
+        <type>Article</type>
+        <content>Keeping track of your past invoices and billing history is simple through your online account portal. To access this information, first, log in to your account using your credentials. Once logged in, look for a section labeled "Billing," "My Invoices," "Payment History," or "Statements." This section typically provides a chronological list of all your past billing cycles. You can usually view a summary of each invoice, including the date, amount, and payment status. To view a detailed invoice, simply click on the specific billing period or invoice number. Most invoices are available for download in PDF format, which is useful for record-keeping or tax purposes. If you require an invoice from a period not listed or encounter any difficulties accessing your history, please contact our support team for assistance, providing your account details and the specific invoice period you are looking for.</content>
+    </doc>
+    <doc>
+        <title>Billing Implications After Subscription Cancellation</title>
+        <type>FAQ</type>
+        <content>Q: What happens to my billing after I cancel my subscription?
+A: When you cancel your subscription, your service will typically remain active until the end of your current billing cycle. You will not be charged for any subsequent billing periods. A final bill may be issued if there are any outstanding charges for the period up to your cancellation date, or if you had any one-time purchases or usage-based fees that were not yet billed. If you prepaid for a longer term and cancel mid-period, our refund policy will apply regarding any unused portion. Please refer to our specific refund policy for details. You will receive a confirmation email once your cancellation is processed, detailing the effective date of service termination and any final billing information. Access to your account portal for viewing past invoices usually remains available even after service termination.</content>
+    </doc>
+</kbdocs>

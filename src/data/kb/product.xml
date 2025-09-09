@@ -1,0 +1,71 @@
+<kbdocs>
+    <doc>
+        <title>Understanding Our Product Subscription Tiers and Billing</title>
+        <type>Article</type>
+        <content>Our product offers several subscription tiers designed to meet diverse user needs. The Basic tier provides essential functionalities for individual users, including core features and standard support. The Pro tier expands upon this with advanced features such such as enhanced reporting, collaborative tools, and priority customer support. For larger organizations, the Enterprise tier offers custom integrations, dedicated account management, and scalable user licenses.
+
+Billing cycles are typically monthly or annually. Annual subscriptions often come with a discounted rate compared to monthly payments. You can view your current subscription details, upcoming billing date, and payment history within your account dashboard under the "Subscription" section. Upgrades to a higher tier can be performed at any time, and the change will be prorated for the current billing cycle. Downgrades will take effect at the end of your current billing period. All pricing information is available on our official website's pricing page.</content>
+    </doc>
+    <doc>
+        <title>Deep Dive into Our Product's Real-time Data Sync Feature</title>
+        <type>Article</type>
+        <content>The real-time data sync feature is a cornerstone of our product, ensuring that your information is always up-to-date across all your connected devices. This functionality automatically synchronizes any changes you make, whether it's adding new data, editing existing entries, or deleting records, almost instantaneously. It operates in the background, requiring no manual intervention once enabled.
+
+To utilize real-time data sync, ensure you are logged into the same user account on all devices where you wish to access your synchronized data. An active internet connection is necessary for the sync process to occur. If you experience a temporary loss of connection, the product will queue your changes and automatically sync them once connectivity is restored. This ensures data integrity and prevents loss of work. You can verify the last sync time within the application settings on each device, providing peace of mind that your data is consistent and accessible wherever you need it.</content>
+    </doc>
+    <doc>
+        <title>Troubleshooting Product Installation: Checking System Requirements</title>
+        <type>Troubleshooting Guide</type>
+        <content>If you are encountering issues during product installation, the first step is to verify your system meets the minimum requirements. Our product requires a 64-bit operating system, specifically Windows 10 or macOS 11 (Big Sur) or newer. You will need at least 8 GB of RAM, though 16 GB is recommended for optimal performance. A dual-core processor with a clock speed of 2.0 GHz or higher is necessary, and 500 MB of free disk space is required for the application itself, with additional space needed for your data.
+
+To check your system specifications on Windows, right-click "This PC" or "My Computer" and select "Properties." On macOS, click the Apple menu in the top-left corner and select "About This Mac." Compare these details with our published requirements. If your system falls below any of these specifications, it may lead to installation failures or poor product performance. Upgrading your hardware or operating system may be necessary to ensure a smooth experience.</content>
+    </doc>
+    <doc>
+        <title>First-Time Product Setup: A Step-by-Step Usage Guide</title>
+        <type>Troubleshooting Guide</type>
+        <content>Welcome to your new product! This guide will walk you through the initial setup process.
+
+1.  **Download the Installer:** After purchase, log into your account on our website and navigate to the "Downloads" section. Select the correct installer for your operating system (Windows or macOS) and download it.
+2.  **Run the Installer:** Locate the downloaded file (usually in your "Downloads" folder) and double-click it to start the installation wizard. Follow the on-screen prompts, accepting the license agreement and choosing your installation directory.
+3.  **Launch the Application:** Once installation is complete, launch the product from your desktop shortcut or applications folder.
+4.  **Log In:** On the initial screen, enter the email address and password associated with your product account. This will activate your license and synchronize your settings.
+5.  **Initial Configuration:** The product may prompt you to set up basic preferences, such as language, theme, or initial data import. Follow these prompts to personalize your experience.
+6.  **Start Using:** You are now ready to explore and utilize all the features of your new product. Refer to our online help center for detailed feature guides.</content>
+    </doc>
+    <doc>
+        <title>Free Trials and Upgrades: Your Questions Answered</title>
+        <type>FAQ</type>
+        <content>Q: How long does the free trial last?
+A: Our free trial typically lasts for 14 days from the date of activation. This period allows you to explore the core functionalities of the product.
+
+Q: What features are available during the free trial?
+A: The free trial provides access to most of the features included in our Basic subscription tier. Certain advanced features, such as premium integrations or extended storage limits, may be restricted during the trial period.
+
+Q: Will I be automatically charged after the trial ends?
+A: No, you will not be automatically charged. We do not require credit card information to start a free trial. You will receive notifications as your trial period nears its end, with options to subscribe.
+
+Q: How do I upgrade from a free trial to a paid plan?
+A: You can upgrade at any time during or after your trial by logging into your account on our website and navigating to the "Subscription" or "Upgrade" section. Choose your desired plan and complete the payment process. All your data and settings from the trial will be seamlessly transferred.</content>
+    </doc>
+    <doc>
+        <title>Comparing Product Editions: Standard Versus Professional Features</title>
+        <type>Article</type>
+        <content>Our product is available in two primary editions: Standard and Professional, each tailored to different user requirements. The Standard edition is ideal for individual users or small teams needing robust core functionalities. It includes essential features such as data management, basic reporting, and standard customer support. This edition provides a solid foundation for everyday tasks and efficient workflow.
+
+The Professional edition builds upon the Standard, offering advanced capabilities for power users and growing teams. Key enhancements in the Professional edition include advanced analytics and customizable dashboards, allowing for deeper insights into your data. It also features enhanced collaboration tools, such as real-time co-editing and granular permission settings, facilitating seamless teamwork. Additionally, Professional users benefit from priority customer support and access to exclusive integrations. While the Standard edition covers fundamental needs, the Professional edition is designed for those requiring more sophisticated tools and higher performance for complex projects and collaborative environments.</content>
+    </doc>
+    <doc>
+        <title>Supported Devices and Operating Systems Policy Note</title>
+        <type>Policy Note</type>
+        <content>This policy outlines the official support for devices and operating systems compatible with our product. We officially support the latest two major versions of Windows (currently Windows 10 and 11) and macOS (currently macOS 13 Ventura and macOS 14 Sonoma). For mobile applications, we support the latest two major versions of iOS and Android. Web-based access is fully supported on the latest versions of Google Chrome, Mozilla Firefox, Microsoft Edge, and Apple Safari.
+
+While the product may function on older operating systems or browsers, we cannot guarantee full functionality, performance, or security updates for unsupported environments. Users operating on unsupported systems may experience compatibility issues, reduced performance, or be unable to access new features. Our customer support team will provide limited assistance for issues encountered on unsupported platforms, primarily focusing on guiding users to upgrade to a supported environment. We recommend keeping your operating system and browser updated to ensure the best and most secure experience with our product.</content>
+    </doc>
+    <doc>
+        <title>Optimizing Product Performance: Tips for Enhanced Usage</title>
+        <type>Article</type>
+        <content>To ensure you get the best performance from our product, consider these optimization tips. Firstly, regularly clear your product's cache. Over time, cached data can accumulate and slow down the application. You can usually find this option within the product's settings under a "Storage" or "Advanced" section. Secondly, ensure your operating system and graphics drivers are up to date. Outdated drivers can sometimes cause compatibility issues or reduce overall system efficiency, impacting the product's responsiveness.
+
+Thirdly, close unnecessary background applications. Other programs consuming significant CPU or RAM can compete for resources, leading to slower product performance. Fourthly, if you are working with very large datasets or complex projects, consider breaking them down into smaller, more manageable files. This can significantly reduce loading times and processing demands. Finally, ensure your internet connection is stable and fast, especially if your product relies heavily on cloud synchronization or online features. A weak connection can bottleneck performance, even if your local system is powerful.</content>
+    </doc>
+</kbdocs>
