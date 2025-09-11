@@ -1,0 +1,35 @@
+draft_task:
+  description: >
+    You are given a customer support ticket and relevant context extracted from knowledge bases.
+    Your job is to draft a customer-facing reply that is:
+    - Clear and polite
+    - Directly answers the customer's query or issue
+    - Uses the provided context only (no hallucinations)
+    - Professional and customer-friendly in tone
+
+    Input:
+    Ticket Text: {ticket_text}
+    Context: {context}
+
+    Output:
+    [Your drafted customer reply]
+  expected_output: >
+    A draft reply to the user that is clear, concise, professional and addresses all their concerns.
+  agent: reply_drafter
+
+refine_task:
+  description: >
+    You are given a drafted customer support reply.
+    Your job is to refine it for professionalism, empathy, tone, grammar, and clarity.
+    Do not change factual content. Keep the reply aligned with professional business communication standards.
+    Ensure the reply is concise, polite, easy to understand, and effectively addresses the user's concerns.
+
+    Input:
+    Drafted Reply: [drafted reply]
+
+    Output:
+    [Refined and final customer reply]
+  expected_output: >
+    A refined and polished reply that is clear, polite, professional, and empathetic ready to be sent to the customer.
+  agent: refiner
+  output_file: final_reply.txt

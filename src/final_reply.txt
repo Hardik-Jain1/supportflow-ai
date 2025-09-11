@@ -1,0 +1,18 @@
+Hello,
+
+Thank you for reaching out. I understand you're experiencing an issue with your {product_purchased}, and I appreciate you've already checked for the latest software updates.
+
+Even with the product software updated, sometimes issues can stem from other areas. To help optimize performance and resolve potential compatibility issues, we recommend the following:
+*   **Update your operating system and graphics drivers:** Outdated drivers can sometimes lead to unexpected behavior.
+*   **Clear the product's cache:** Regularly clearing the cache can help improve performance.
+*   **Ensure your system meets requirements:** For optimal functionality, performance, and security, please ensure your operating system and browser are updated and that your system specifications meet the published requirements for the product.
+
+Regarding your question about the product's design, a core feature is its **real-time data sync**, which ensures information is consistently updated across your devices without manual intervention. The product is also offered in different editions, such as Standard and Professional, each designed with specific functionalities to meet varying user requirements.
+
+To help us investigate the issue you're experiencing more effectively, please provide as much detail as possible. This could include:
+*   A description of what you were doing when the issue occurred.
+*   Any error messages you received.
+*   The specific steps to reproduce the issue.
+*   The operating system and browser version you are currently using.
+
+Once we have this additional information, we'll be better equipped to assist you further.
