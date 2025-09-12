@@ -1,4 +1,5 @@
 import os
+import re
 import pandas as pd
 from pathlib import Path
 from typing import Dict, Any
@@ -114,9 +115,9 @@ def make_retriever_tools(retrievers: Dict[str, Any]):
     return tools
 
 
-def build_agent(retrievers: Dict[str, Any], llm_model: str = "gemini/gemini-2.5-flash") -> AgentExecutor:
+def build_agent(retrievers: Dict[str, Any], model: str = "gemini/gemini-2.5-flash", verbose: bool = False) -> AgentExecutor:
     tools = make_retriever_tools(retrievers)
-    llm = ChatLiteLLM(model=llm_model, temperature=0)
+    llm = ChatLiteLLM(model=model, temperature=0, top_p=0.5)
 
     prompt = PromptTemplate(
         template=AGENT_PROMPT,
@@ -124,4 +125,42 @@ def build_agent(retrievers: Dict[str, Any], llm_model: str = "gemini/gemini-2.5-
     )
 
     agent = create_react_agent(llm=llm, tools=tools, prompt=prompt)
-    return AgentExecutor(agent=agent, tools=tools, verbose=True, handle_parsing_errors=True)
+    return AgentExecutor(agent=agent, tools=tools, verbose=verbose, handle_parsing_errors=True)
+
+
+def parse_agent2_output(xml_text: str, narrative: bool = False) -> str:
+    """
+    Parse Agent 2's XML output into a clean narrative format for Agent 3.
+    """
+
+    # Extract individual retrieved sources
+    sources = re.findall(
+        r'<source retriever="(.*?)">\s*<summary>(.*?)</summary>\s*</source>',
+        xml_text,
+        re.DOTALL
+    )
+
+    # Extract consolidated context
+    consolidated_match = re.search(r"<consolidated_context>(.*?)</consolidated_context>", xml_text, re.DOTALL)
+    consolidated_context = consolidated_match.group(1).strip() if consolidated_match else "No consolidated summary available."
+
+    if not narrative:
+        return consolidated_context
+
+    # --- Build narrative ---
+    narrative_parts = []
+
+    # Relevant Knowledge
+    narrative_parts.append("Relevant Knowledge:")
+    if sources:
+        for retriever, summary in sources:
+            summary_clean = " ".join(summary.split())
+            narrative_parts.append(f"- {summary_clean} [{retriever}]")
+    else:
+        narrative_parts.append("- No relevant knowledge found.")
+
+    narrative_parts.append("\nConsolidated Summary:")
+    narrative_parts.append(consolidated_context)
+
+    return "\n".join(narrative_parts)
+

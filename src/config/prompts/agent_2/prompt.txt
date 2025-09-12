@@ -39,13 +39,10 @@ Provide your final output in following XML format:
   </consolidated_context>
 </result>
 
-- In the final output, output ONLY a single XML block exactly matching the above schema.
-- No prose, no markdown, no explanations outside the XML.
-
 You have access to the following retriever tools:
 {tools}
 
-Use the following format or process for performing the task:
+Use the following format for performing the task:
 
 Question: the task you need to perform
 Thought: you should always think about what to do
@@ -53,8 +50,13 @@ Action: the action to take, should be one of [{tool_names}]
 Action Input: the input to the action
 Observation: the result of the action
 ... (this Thought/Action/Action Input/Observation can repeat N times)
-Thought: I now know the final answer
-Final Answer: the final output to the task
+Thought: I now have all the information I need to provide the final answer.
+Final Answer: XML output
+
+IMPORTANT: When you have gathered all necessary information, you MUST:
+1. Start your final response with "Thought: I now have all the information I need to provide the final answer"
+2. Follow immediately with "Final Answer:" and then the XML block
+3. Do NOT add any text before or after the XML in the Final Answer section
 
 Begin!
 

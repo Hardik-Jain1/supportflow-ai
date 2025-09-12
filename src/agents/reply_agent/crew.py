@@ -13,17 +13,16 @@ class ReplyAgentCrew():
     agents: List[BaseAgent]
     tasks: List[Task]
 
-    llm = LLM(
-        model="gemini/gemini-2.5-flash",
-        temperature=0,
-        top_p=0.5
-    )
+    def __init__(self, model= "gemini/gemini-2.5-flash", verbose = False):
+        super().__init__()
+        self.llm = model
+        self.verbose = False
 
     @agent
     def reply_drafter(self) -> Agent:
         return Agent(
             config=self.agents_config['reply_drafter'],
-            verbose=True,
+            verbose=self.verbose,
             llm=self.llm
         )
     
@@ -31,7 +30,7 @@ class ReplyAgentCrew():
     def refiner(self) -> Agent:
         return Agent(
             config=self.agents_config['refiner'],
-            verbose=True,
+            verbose=self.verbose,
             llm=self.llm
         )
     
@@ -50,20 +49,28 @@ class ReplyAgentCrew():
         )
 
     @crew
-    def crew(self) -> Crew:
+    def crew(self, verbose = False) -> Crew:
         return Crew(
             agents=self.agents,
             tasks=self.tasks,
             process=Process.sequential,
-            verbose=True
+            verbose=self.verbose
         )
     
-    @before_kickoff
-    def before_kickoff_function(self, inputs):
-        print(f"Before kickoff function with inputs: {inputs}")
-        return inputs
+    # @before_kickoff
+    # def before_kickoff_function(self, inputs):
+    #     print(f"Before kickoff function with inputs: {inputs}")
+    #     return inputs
 
-    @after_kickoff
-    def after_kickoff_function(self, result):
-        print(f"After kickoff function with result: {result}")
-        return result   
+    # @after_kickoff
+    # def after_kickoff_function(self, result):
+    #     print(f"After kickoff function with result: {result}")
+    #     return result
+
+def reply_agent(ticket, context, model = "gemini/gemini-2.5-flash", verbose = False):
+    inputs = {
+        "ticket_text": ticket,
+        "context": context,
+    }
+
+    return ReplyAgentCrew(model).crew(verbose).kickoff(inputs) 
