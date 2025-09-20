@@ -1,0 +1,35 @@
+1. Action Name: initiate_refund
+   Description: Process a refund for a customer's payment or order.  
+   Arguments:
+     - order_id (string): The unique identifier of the customer's order.  
+     - amount (string): The refund amount.  
+     - reason (string): The reason for the refund.  
+
+2. Action Name: check_order_status
+   Description: Retrieve the current status of a customer's order.  
+   Arguments:
+     - order_id (string): The unique identifier of the customer's order.  
+
+3. Action Name: reset_password
+   Description: Reset a customer's account password and send reset instructions.  
+   Arguments:
+     - account_id (string): The unique identifier of the customer's account.  
+     - delivery_method (string): The method to deliver reset instructions (e.g., email, SMS).  
+
+4. Action Name: update_account_info
+   Description: Update customer's account details such as contact information or preferences.  
+   Arguments:
+     - account_id (string): The unique identifier of the customer's account.  
+     - field (string): The field to update (e.g., email, phone_number, address).  
+     - new_value (string): The updated value for the field.  
+
+5. Action Name: create_support_ticket
+   Description: Escalate the customer's issue by creating an internal support ticket.  
+   Arguments:
+     - issue_summary (string): Short description of the issue.  
+     - urgency (string): Level of urgency (e.g., low, medium, high, critical).  
+     - related_category (string): The related issue category.  
+
+6. Action Name: no_action_required
+   Description: Indicates that no backend/system action is necessary and the issue can be resolved by communication alone.  
+   Arguments: None  

@@ -1,0 +1,16 @@
+Here are the details for the current ticket and the action catalog:
+
+Ticket Details:
+- Ticket Text: {ticket_text}
+- Category: {category}
+- Urgency: {urgency}
+
+Relevant Narrative Context:
+{narrative_context}
+
+Action Catalog:
+{action_catalog}
+
+Task:
+Based on the ticket details, narrative context, and catalog, suggest the most appropriate action(s).  
+Follow the system instructions and provide your answer strictly in the required XML schema.  
