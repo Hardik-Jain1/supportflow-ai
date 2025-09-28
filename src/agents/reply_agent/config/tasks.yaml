@@ -1,7 +1,7 @@
 draft_task:
   description: >
     You are given a customer support ticket and relevant context extracted from knowledge bases.
-    Your job is to draft a customer-facing reply that is:
+    Draft a customer-facing reply that is:
     - Clear and polite
     - Directly answers the customer's query or issue
     - Uses the provided context only (no hallucinations)
@@ -20,7 +20,7 @@ draft_task:
 refine_task:
   description: >
     You are given a drafted customer support reply.
-    Your job is to refine it for professionalism, empathy, tone, grammar, and clarity.
+    Refine it for professionalism, empathy, tone, grammar, and clarity.
     Do not change factual content. Keep the reply aligned with professional business communication standards.
     Ensure the reply is concise, polite, easy to understand, and effectively addresses the user's concerns.
 
@@ -33,3 +33,48 @@ refine_task:
     A refined and polished reply that is clear, polite, professional, and empathetic ready to be sent to the customer.
   agent: refiner
   output_file: final_reply.txt
+
+analyze_feedback_task:
+  description: >
+    You are given a previous draft customer support reply and human feedback about what needs to be improved.
+    Analyze the feedback thoroughly and provide specific, actionable improvement instructions.
+    Break down the feedback into clear categories such as:
+    - Tone adjustments needed
+    - Content that should be added, removed, or modified  
+    - Structural or formatting changes required
+    - Clarity or language improvements needed
+
+    Input:
+    Previous Draft: {previous_draft}
+    Human Feedback: {human_feedback}
+    Original Ticket: {ticket_text}
+
+    Output:
+    [Detailed analysis with specific improvement instructions]
+  expected_output: >
+    A comprehensive analysis of the feedback with specific, actionable instructions for improving the reply.
+  agent: feedback_analyzer
+
+redraft_task:
+  description: >
+    You are given a customer support ticket, relevant context, a previous draft reply, and specific improvement instructions based on human feedback.
+    Create a new draft that addresses all the feedback while maintaining the helpful aspects of the previous draft.
+    
+    Requirements:
+    - Address ALL issues mentioned in the improvement instructions
+    - Incorporate relevant information from the context
+    - Keep any good elements from the previous draft
+    - Ensure the reply is clear, polite, and professional
+    - Do not hallucinate information not provided in context
+
+    Input:
+    Ticket Text: {ticket_text}
+    Context: {context}
+    Previous Draft: {previous_draft}
+    Improvement Instructions: [from feedback analysis]
+
+    Output:
+    [Your redrafted customer reply]
+  expected_output: >
+    A revised draft reply that addresses the human feedback while maintaining professionalism and accuracy.
+  agent: reply_drafter

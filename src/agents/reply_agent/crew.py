@@ -34,6 +34,14 @@ class ReplyAgentCrew():
             llm=self.llm
         )
     
+    @agent
+    def feedback_analyzer(self) -> Agent:
+        return Agent(
+            config=self.agents_config['feedback_analyzer'],
+            verbose=self.verbose,
+            llm=self.llm
+        )
+    
     @task
     def draft_task(self) -> Task:
         return Task(
@@ -47,12 +55,41 @@ class ReplyAgentCrew():
             config=self.tasks_config['refine_task'],
             output_file='final_reply.txt',
         )
+    
+    @task
+    def analyze_feedback_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['analyze_feedback_task'],
+            input_variables=['previous_draft', 'human_feedback', 'ticket_text']
+        )
+    
+    @task
+    def redraft_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['redraft_task'],
+            input_variables=['ticket_text', 'context', 'previous_draft'],
+            context=[self.analyze_feedback_task()]
+        )
 
     @crew
-    def crew(self, verbose = False) -> Crew:
+    def crew(self, mode="draft", verbose = False) -> Crew:
+        """
+        Create crew with different task flows based on mode:
+        - 'draft': Initial drafting (draft_task -> refine_task)
+        - 'redraft': Redrafting with feedback (analyze_feedback_task -> redraft_task -> refine_task)
+        """
+        if mode == "redraft":
+            # Redrafting workflow: analyze feedback -> redraft -> refine
+            selected_agents = [self.feedback_analyzer(), self.reply_drafter(), self.refiner()]
+            selected_tasks = [self.analyze_feedback_task(), self.redraft_task(), self.refine_task()]
+        else:
+            # Default: Initial drafting workflow: draft -> refine
+            selected_agents = [self.reply_drafter(), self.refiner()]
+            selected_tasks = [self.draft_task(), self.refine_task()]
+        
         return Crew(
-            agents=self.agents,
-            tasks=self.tasks,
+            agents=selected_agents,
+            tasks=selected_tasks,
             process=Process.sequential,
             verbose=self.verbose
         )
@@ -68,9 +105,21 @@ class ReplyAgentCrew():
     #     return result
 
 def reply_agent(ticket, context, model = "gemini/gemini-2.5-flash", verbose = False):
+    """Initial drafting function - unchanged for backward compatibility"""
     inputs = {
         "ticket_text": ticket,
         "context": context,
     }
 
-    return ReplyAgentCrew(model).crew(verbose).kickoff(inputs) 
+    return ReplyAgentCrew(model).crew(mode="draft", verbose=verbose).kickoff(inputs)
+
+def redraft_reply_agent(ticket, context, previous_draft, human_feedback, model = "gemini/gemini-2.5-flash", verbose = False):
+    """Redrafting function based on human feedback"""
+    inputs = {
+        "ticket_text": ticket,
+        "context": context,
+        "previous_draft": previous_draft,
+        "human_feedback": human_feedback,
+    }
+
+    return ReplyAgentCrew(model).crew(mode="redraft", verbose=verbose).kickoff(inputs) 
