@@ -14,6 +14,7 @@ from langchain.agents import create_react_agent, AgentExecutor
 from langchain.tools.retriever import create_retriever_tool
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate, PromptTemplate, MessagesPlaceholder
 from langchain import hub
+import json
 
 
 # CONFIG
@@ -128,7 +129,7 @@ def build_agent(retrievers: Dict[str, Any], model: str = "gemini/gemini-2.5-flas
     return AgentExecutor(agent=agent, tools=tools, verbose=verbose, handle_parsing_errors=True)
 
 
-def parse_agent2_output(xml_text: str, narrative: bool = False) -> str:
+def parse_agent2_output_text(xml_text: str, narrative: bool = False) -> str:
     """
     Parse Agent 2's XML output into a clean narrative format for Agent 3.
     """
@@ -164,3 +165,33 @@ def parse_agent2_output(xml_text: str, narrative: bool = False) -> str:
 
     return "\n".join(narrative_parts)
 
+def parse_agent2_output_json(xml_text: str) -> Dict[str, Any]:
+    """
+    Parse Agent 2's XML output into a structured JSON format.
+    """
+    
+    # Extract individual retrieved sources
+    sources = re.findall(
+        r'<source retriever="(.*?)">\s*<summary>(.*?)</summary>\s*</source>',
+        xml_text,
+        re.DOTALL
+    )
+    
+    # Extract consolidated context
+    consolidated_match = re.search(r"<consolidated_context>(.*?)</consolidated_context>", xml_text, re.DOTALL)
+    consolidated_context = consolidated_match.group(1).strip() if consolidated_match else "No consolidated summary available."
+    
+    # Build structured JSON response
+    result = {
+        "sources": [
+            {
+                "retriever": retriever,
+                "summary": " ".join(summary.split())
+            }
+            for retriever, summary in sources
+        ],
+        "consolidated_context": consolidated_context,
+        "total_sources": len(sources)
+    }
+    
+    return result

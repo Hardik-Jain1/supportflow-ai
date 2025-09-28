@@ -11,6 +11,7 @@ dependencies = [
     "langchain-community>=0.3.27",
     "langchain-litellm>=0.2.2",
     "langchain[google-genai]>=0.3.27",
+    "langgraph>=1.0.0a3",
     "litellm>=1.75.8",
     "matplotlib>=3.10.5",
     "networkx>=3.5",
