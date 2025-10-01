@@ -1,24 +1,21 @@
 Dear [Customer's Name],
 
-Thank you for bringing this issue to our attention. We sincerely apologize for any inconvenience caused by the double charge on December 15th, 2024 (Transaction IDs: TXN12345 and TXN12346, each for $29.99). These transactions appear to be duplicates in your billing history.
+Thank you for bringing this issue to our attention. We sincerely apologize for any inconvenience caused by the application crash when exporting data to PDF. The error code `ERR_EXPORT_FAILED` indicates a technical problem that we need to investigate further.
 
-To address both issues—double charge investigation and account access—we recommend the following steps:
+To help us resolve the issue quickly, could you please verify the following:
 
-**Double Charge Investigation:**
-- Visit our website at [Login URL] and click on "Forgot Password?" or "Reset Password."
-- Enter the email address associated with your account.
-- Check both your primary inbox and spam/junk folders for a password reset link.
-- Follow the instructions to create a new secure password.
+1. **System Requirements:** Ensure your device meets the minimum system requirements for the application.
+2. **System Resources:** Check if there is sufficient RAM and processor capacity on your Windows 11 machine.
+3. **Browser Compatibility:** Confirm that you are using an updated version of Chrome (version 120.0.6099.216 in this case).
+4. **Known Issues:** Review online forums or our support page for any known issues related to recent updates, as crashes after an update can be due to compatibility problems or new bugs.
 
-**Account Access Issue:**
-- Visit our website at [Login URL] again and click on "Forgot Password?"
-- Enter the email address associated with your account.
-- Check both your primary inbox and spam/junk folders for a password reset link.
-- Follow the instructions to create a new secure password.
+If none of the above steps resolve the issue, we recommend reinstalling the application while backing up your important data first. This might help address any potential corruption that could have occurred during the latest update.
 
-If you need any further assistance, please do not hesitate to contact our support team at [Support Email] or call us at [Support Phone Number]. We are here to help resolve these issues promptly.
+For further assistance, please provide the error code and any additional details you may have noted when this issue occurs. Our technical support team will use this information to investigate and resolve the problem as soon as possible.
 
-Thank you for your patience and understanding as we work through these steps together. Your satisfaction is important to us.
+Thank you for your cooperation, and we appreciate your patience while we work on a solution.
 
 Best regards,
-Lexify Customer Support Team
+
+[Your Name]  
+Customer Support Team

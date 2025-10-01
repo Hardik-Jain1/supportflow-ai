@@ -1,8 +1,3 @@
-"""
-Streamlit UI for Customer Support Triage Multi-Agent Workflow
-Provides interactive interface with Human-in-the-Loop support
-"""
-
 import streamlit as st
 import json
 import os
@@ -242,14 +237,25 @@ def resume_run(run_id: str, human_inputs: Dict[str, Any]) -> Dict[str, Any]:
     if human_feedback_text:
         state.human_feedback = human_feedback_text
     
-    # Update action approvals
+    # Update action approvals and edited parameters
     if "actions" in human_inputs:
+        print(f"[DEBUG] Updating {len(human_inputs['actions'])} actions from human inputs")
         for i, action_input in enumerate(human_inputs["actions"]):
             if i < len(state.actions):
+                # Update approval status
                 state.actions[i].approved = action_input.get("approved")
-                # Allow editing params
+                
+                # Update params if provided (edited by user)
                 if "params" in action_input:
-                    state.actions[i].params = action_input["params"]
+                    original_params = state.actions[i].params
+                    new_params = action_input["params"]
+                    
+                    print(f"[DEBUG] Action {i} ({state.actions[i].action}):")
+                    print(f"[DEBUG]   Approved: {state.actions[i].approved}")
+                    print(f"[DEBUG]   Original params: {original_params}")
+                    print(f"[DEBUG]   Updated params: {new_params}")
+                    
+                    state.actions[i].params = new_params
     
     history.append({
         "node": "human_review",
@@ -741,9 +747,11 @@ def display_actions_section(run_id: str, state_dict: Dict[str, Any], status: str
         st.info("No actions suggested for this ticket.")
         return
     
-    # Action approval interface
+    # Initialize session state for action approvals and edited params
     if "action_approvals" not in st.session_state:
         st.session_state.action_approvals = {}
+    if "action_params" not in st.session_state:
+        st.session_state.action_params = {}
     
     for i, action in enumerate(actions):
         action_name = action.get("action", "")
@@ -758,10 +766,51 @@ def display_actions_section(run_id: str, state_dict: Dict[str, Any], status: str
             expanded=(status == "paused")
         ):
             st.markdown(f"**Rationale:** {rationale}")
-            st.json(params)
             
             if status == "paused":
-                approval_key = f"{run_id}_action_{i}"
+                st.markdown("**Parameters:**")
+                
+                # Initialize params dict for this action if not exists
+                if i not in st.session_state.action_params:
+                    st.session_state.action_params[i] = params.copy()
+                
+                # Create editable inputs for each parameter
+                edited_params = {}
+                for param_name, param_value in params.items():
+                    param_key = f"{run_id}_action_{i}_param_{param_name}"
+                    
+                    # Determine input type based on value
+                    if isinstance(param_value, bool):
+                        edited_value = st.checkbox(
+                            f"**{param_name}**",
+                            value=st.session_state.action_params[i].get(param_name, param_value),
+                            key=param_key
+                        )
+                    elif isinstance(param_value, (int, float)):
+                        edited_value = st.number_input(
+                            f"**{param_name}**",
+                            value=float(st.session_state.action_params[i].get(param_name, param_value)),
+                            key=param_key
+                        )
+                        # Convert back to int if original was int
+                        if isinstance(param_value, int):
+                            edited_value = int(edited_value)
+                    else:
+                        # String or other types
+                        edited_value = st.text_input(
+                            f"**{param_name}**",
+                            value=str(st.session_state.action_params[i].get(param_name, param_value)),
+                            key=param_key
+                        )
+                    
+                    edited_params[param_name] = edited_value
+                
+                # Update session state with edited params
+                st.session_state.action_params[i] = edited_params
+                
+                # Show approval checkbox
+                st.markdown("---")
+                approval_key = f"{run_id}_action_{i}_approval"
                 
                 if approved is None:
                     default_approval = False
@@ -769,12 +818,16 @@ def display_actions_section(run_id: str, state_dict: Dict[str, Any], status: str
                     default_approval = approved
                 
                 approved_value = st.checkbox(
-                    "Approve this action",
+                    "✅ Approve this action",
                     value=default_approval,
                     key=approval_key
                 )
                 
                 st.session_state.action_approvals[i] = approved_value
+            else:
+                # Display params as read-only JSON when not in paused state
+                st.markdown("**Parameters:**")
+                st.json(params)
     
     # Execute actions button
     if status == "paused" and st.session_state.get("reply_approved"):
@@ -794,6 +847,7 @@ def display_actions_section(run_id: str, state_dict: Dict[str, Any], status: str
             if st.button("❌ Cancel", use_container_width=True):
                 st.session_state.reply_approved = False
                 st.session_state.action_approvals = {}
+                st.session_state.action_params = {}  # Clear edited params
                 st.rerun()
 
 
@@ -810,7 +864,14 @@ def display_history_and_results(run_state: Dict[str, Any]):
         timestamp = entry.get("timestamp", "")
         outputs = entry.get("outputs", {})
         
-        with st.expander(f"Step {i+1}: {node} - {timestamp}"):
+        # Format timestamp for display
+        try:
+            dt = datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
+            formatted_time = dt.strftime("%Y-%m-%d %H:%M:%S")
+        except:
+            formatted_time = timestamp
+        
+        with st.expander(f"Step {i+1}: {node} - {formatted_time}"):
             st.json(outputs)
     
     # Execution results
@@ -887,16 +948,28 @@ def resume_with_feedback(run_id: str, edited_reply: str, feedback: str):
 
 
 def execute_workflow(run_id: str, state_dict: Dict[str, Any]):
-    """Execute workflow with approved actions"""
-    # Gather action approvals
+    """Execute workflow with approved actions and edited parameters"""
+    # Gather action approvals and edited parameters
     actions = state_dict.get("actions", [])
     action_inputs = []
     
+    print(f"[DEBUG] execute_workflow called for run_id: {run_id}")
+    print(f"[DEBUG] Total actions: {len(actions)}")
+    
     for i, action in enumerate(actions):
         approved = st.session_state.action_approvals.get(i, False)
+        
+        # Use edited params from session state if available, otherwise use original
+        edited_params = st.session_state.action_params.get(i, action.get("params", {}))
+        
+        print(f"[DEBUG] Action {i}: {action.get('action')}")
+        print(f"[DEBUG]   Approved: {approved}")
+        print(f"[DEBUG]   Original params: {action.get('params')}")
+        print(f"[DEBUG]   Edited params: {edited_params}")
+        
         action_inputs.append({
             "action": action.get("action"),
-            "params": action.get("params"),
+            "params": edited_params,  # Use edited params
             "approved": approved
         })
     
@@ -909,6 +982,7 @@ def execute_workflow(run_id: str, state_dict: Dict[str, Any]):
         st.session_state.run_state = result
         st.session_state.reply_approved = False
         st.session_state.action_approvals = {}
+        st.session_state.action_params = {}  # Clear edited params
         
         if result.get("status") == "completed":
             st.success("✅ Workflow completed successfully!")
@@ -923,6 +997,7 @@ def escalate_workflow(run_id: str):
         st.session_state.run_state = result
         st.session_state.reply_approved = False
         st.session_state.action_approvals = {}
+        st.session_state.action_params = {}  # Clear edited params
         st.warning("⚠️ Ticket escalated to human agent")
         st.rerun()
 
