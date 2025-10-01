@@ -2,12 +2,22 @@ from flows.state.ticket_state import TicketState, KBHit, KBResult
 from agents.kb_agent import build_retrievers_from_csvs, build_agent, parse_agent2_output_text, parse_agent2_output_json
 from utils.config import config
 
-# Initialize KB agent with configured model
-kb_retrievers = build_retrievers_from_csvs()
-kb_agent = build_agent(kb_retrievers, model=config.kb_model)
+# Global variables for lazy initialization
+kb_retrievers = None
+kb_agent = None
+
+def _ensure_kb_agent_initialized():
+    global kb_retrievers, kb_agent
+    if kb_agent is None:
+        kb_retrievers = build_retrievers_from_csvs()
+        kb_agent = build_agent(kb_retrievers, model=config.kb_model)
+    return kb_agent
 
 def kb_retrieve(state: TicketState) -> TicketState:
-    agent2_output_xml = kb_agent.invoke({
+    # Ensure KB agent is initialized
+    agent = _ensure_kb_agent_initialized()
+    
+    agent2_output_xml = agent.invoke({
         "ticket_text": state.ticket_text,
         "category": state.category
     })["output"]

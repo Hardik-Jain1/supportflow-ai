@@ -1,18 +1,24 @@
 Dear [Customer's Name],
 
-We sincerely apologize for the inconvenience caused by the double charge on your account on December 15th, 2024 (Transaction IDs: TXN12345 and TXN12346). We have confirmed that these transactions are duplicates. Your account number is ACC789123.
+Thank you for bringing this issue to our attention. We sincerely apologize for any inconvenience caused by the double charge on December 15th, 2024 (Transaction IDs: TXN12345 and TXN12346, each for $29.99). These transactions appear to be duplicates in your billing history.
 
-Regarding the login issue, we understand you're encountering an 'invalid credentials' error despite using your correct password. Please follow these steps to resolve this:
+To address both issues—double charge investigation and account access—we recommend the following steps:
 
-1. Ensure your username and password are correctly entered (passwords are case-sensitive).
-2. Clear any browser cache or cookies.
-3. Try logging in from a different device or private browsing mode.
+**Double Charge Investigation:**
+- Visit our website at [Login URL] and click on "Forgot Password?" or "Reset Password."
+- Enter the email address associated with your account.
+- Check both your primary inbox and spam/junk folders for a password reset link.
+- Follow the instructions to create a new secure password.
 
-If you continue to face difficulties, please use the 'Forgot Password' option. Additionally, ensure you have a stable internet connection and temporarily disable any VPN services.
+**Account Access Issue:**
+- Visit our website at [Login URL] again and click on "Forgot Password?"
+- Enter the email address associated with your account.
+- Check both your primary inbox and spam/junk folders for a password reset link.
+- Follow the instructions to create a new secure password.
 
-Thank you for your patience as we resolve these issues. Please let us know if you need further assistance or have more questions.
+If you need any further assistance, please do not hesitate to contact our support team at [Support Email] or call us at [Support Phone Number]. We are here to help resolve these issues promptly.
+
+Thank you for your patience and understanding as we work through these steps together. Your satisfaction is important to us.
 
 Best regards,
-
-[Your Name]  
-Customer Support Team
+Lexify Customer Support Team

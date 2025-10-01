@@ -173,6 +173,9 @@ def draft_reply(state: TicketState) -> TicketState:
 
 # 4) Action suggestions
 def suggest_actions(state: TicketState) -> TicketState:
+    if state.actions:
+        print("Action Suggester Agent: actions already proposed, skipping")
+        return state 
     proposals: List[ActionProposal] = []
 
     agent4_inputs = {

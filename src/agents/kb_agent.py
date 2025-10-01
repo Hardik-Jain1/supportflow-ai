@@ -66,6 +66,14 @@ def build_retrievers_from_csvs() -> Dict[str, Any]:
     # Load the entire CSV once
     df = pd.read_csv(DATA_FILE)
     
+    # Import here to avoid async issues at module level
+    import asyncio
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+    
     embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
     splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=100)
     retrievers = {}

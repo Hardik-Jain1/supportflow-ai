@@ -15,7 +15,7 @@ def main():
         result = triage_flow.invoke(initial_state)
         
         print("\nWorkflow completed!")
-        print(f"Final state: Posted={result.posted}, Escalated={result.escalated}")
+        print(f"Final state: Posted={result["posted"]}, Escalated={result["escalated"]}")
 
 if __name__ == "__main__":
     main()

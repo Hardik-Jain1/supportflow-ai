@@ -5,6 +5,10 @@ from utils.helpers import get_narrative_context
 from utils.config import config
 
 def suggest_actions(state: TicketState) -> TicketState:
+    if state.actions:
+        print("Action Suggester Agent: actions already proposed, skipping")
+        return state 
+
     proposals: List[ActionProposal] = []
 
     agent4_inputs = {

@@ -1,5 +1,5 @@
 from langgraph.graph import StateGraph, END
-from flows.state import TicketState
+from flows.state.ticket_state import TicketState
 from flows.nodes.triage_node import triage_classifier
 from flows.nodes.kb_node import kb_retrieve
 from flows.nodes.reply_node import draft_reply
