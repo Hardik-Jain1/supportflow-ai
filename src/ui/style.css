@@ -1,0 +1,72 @@
+.stTextArea textarea {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #1f1f1f !important;
+}
+
+.stTextArea [data-baseweb="textarea"] {
+    background-color: #ffffff !important;
+}
+
+/* Read-only text areas */
+.stTextArea textarea[disabled] {
+    color: #000000 !important;
+    opacity: 1 !important;
+    background-color: #ffffff !important;
+    border: 2px solid #e0e0e0 !important;
+    font-weight: 500 !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* Metrics */
+[data-testid="stMetricValue"] {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    color: #1f1f1f !important;
+}
+
+[data-testid="stMetricDelta"] {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+/* Headers */
+h1, h2, h3 {
+    color: #1f1f1f !important;
+    font-weight: 600 !important;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: #f8f9fa !important;
+}
+
+/* Expanders */
+.streamlit-expanderHeader {
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    color: #1f1f1f !important;
+}
+
+/* Progress bars */
+.stProgress > div > div > div {
+    background-color: #0066cc !important;
+}
+
+/* Info/Success/Warning boxes */
+.stAlert {
+    font-weight: 500 !important;
+}
+
+/* JSON display */
+.stJson {
+    background-color: #f8f9fa !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 4px !important;
+}
+
+/* Input fields */
+input, select {
+    font-weight: 500 !important;
+    color: #1f1f1f !important;
+}
