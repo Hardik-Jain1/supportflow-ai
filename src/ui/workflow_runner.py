@@ -22,8 +22,7 @@ from flows.nodes.kb_node import kb_retrieve
 from flows.nodes.reply_node import draft_reply
 from flows.nodes.actions_node import suggest_actions
 from flows.nodes.human_review_node import decide_human_review
-from flows.nodes.execution_node import execute_actions, post_or_escalate
-from flows.triage_workflow import finalize
+from flows.nodes.execution_node import execute_actions, post_or_escalate, finalize
 
 # Configuration
 RUNS_DIR = Path("runs")
