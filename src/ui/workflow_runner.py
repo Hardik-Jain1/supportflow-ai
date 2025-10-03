@@ -8,23 +8,22 @@ import uuid
 from datetime import datetime
 from typing import Dict, Any, Optional
 from pathlib import Path
+from utils.config import config
 
-from workflow import (
+from flows.state.ticket_state import (
     TicketState,
     TicketMeta,
     KBResult,
     KBHit,
-    ActionProposal,
-    triage_classifier,
-    kb_retrieve,
-    draft_reply,
-    suggest_actions,
-    decide_human_review,
-    execute_actions,
-    post_or_escalate,
-    finalize
+    ActionProposal
 )
-from utils.config import config
+from flows.nodes.triage_node import triage_classifier
+from flows.nodes.kb_node import kb_retrieve
+from flows.nodes.reply_node import draft_reply
+from flows.nodes.actions_node import suggest_actions
+from flows.nodes.human_review_node import decide_human_review
+from flows.nodes.execution_node import execute_actions, post_or_escalate
+from flows.triage_workflow import finalize
 
 # Configuration
 RUNS_DIR = Path("runs")

@@ -52,8 +52,7 @@ class ReplyAgentCrew():
     @task
     def refine_task(self) -> Task:
         return Task(
-            config=self.tasks_config['refine_task'],
-            output_file='final_reply.txt',
+            config=self.tasks_config['refine_task']
         )
     
     @task
