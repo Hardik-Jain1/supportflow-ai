@@ -1,7 +1,7 @@
 from flows.state.ticket_state import TicketState
 from utils.config import config
 
-def decide_human_review(state: TicketState) -> TicketState:
+async def decide_human_review(state: TicketState) -> TicketState:
     if config.force_human_review:
         state.needs_review = True
     else:
@@ -11,7 +11,7 @@ def decide_human_review(state: TicketState) -> TicketState:
         state.needs_review = risky_present or low_conf_reply or low_conf_category
     return state
 
-def human_review_node(state: TicketState) -> TicketState:
+async def human_review_node(state: TicketState) -> TicketState:
     if not state.needs_review:
         return state
     

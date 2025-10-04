@@ -1,4 +1,5 @@
 import streamlit as st
+import asyncio
 from pathlib import Path
 
 # Import UI components and workflow runners
@@ -65,7 +66,7 @@ def main():
                     status_text.info(f"⏳ {message}")
                 
                 try:
-                    result = start_run(ticket_text, progress_callback=update_progress)
+                    result = asyncio.run(start_run(ticket_text, progress_callback=update_progress))
                     st.session_state.run_id = result.get("run_id")
                     st.session_state.run_state = result
                     

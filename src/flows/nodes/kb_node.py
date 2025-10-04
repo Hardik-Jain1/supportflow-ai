@@ -1,32 +1,30 @@
 from flows.state.ticket_state import TicketState, KBHit, KBResult
-from agents.kb_agent import build_retrievers_from_csvs, build_agent, parse_agent2_output_text, parse_agent2_output_json
+import asyncio
+from acp_sdk.client import Client
+from acp_sdk.models import Message, MessagePart
 from utils.config import config
+import json
 
-# Global variables for lazy initialization
-kb_retrievers = None
-kb_agent = None
-
-def _ensure_kb_agent_initialized():
-    global kb_retrievers, kb_agent
-    if kb_agent is None:
-        kb_retrievers = build_retrievers_from_csvs()
-        kb_agent = build_agent(kb_retrievers, model=config.kb_model)
-    return kb_agent
-
-def kb_retrieve(state: TicketState) -> TicketState:
-    # Ensure KB agent is initialized
-    agent = _ensure_kb_agent_initialized()
-    
-    agent2_output_xml = agent.invoke({
+async def kb_retrieve(state: TicketState) -> TicketState:
+    input_data = json.dumps({
         "ticket_text": state.ticket_text,
         "category": state.category
-    })["output"]
+    })
+    async with Client(base_url="http://localhost:8001") as client:
+        run = await client.run_sync(
+            agent="kb_agent",
+            input=[
+                Message(
+                    parts=[MessagePart(content=input_data, content_type="text/plain")]
+                )
+            ],
+        )
+        agent_2_output_json = json.loads(run.output[0].parts[0].content)
 
-    agent2_parsed_json = parse_agent2_output_json(agent2_output_xml)
-    if agent2_parsed_json:
+    if agent_2_output_json:
         # Convert parsed sources to KBHit objects
         kb_hits = []
-        for source in agent2_parsed_json.get("sources", []):
+        for source in agent_2_output_json.get("sources", []):
             kb_hits.append(KBHit(
                 retriever=source.get("retriever", ""),
                 summary=source.get("summary", "")
@@ -34,7 +32,7 @@ def kb_retrieve(state: TicketState) -> TicketState:
         
         state.kb_result = KBResult(
             retrieved_sources=kb_hits,
-            consolidated_context=agent2_parsed_json.get("consolidated_context", "")
+            consolidated_context=agent_2_output_json.get("consolidated_context", "")
         )
         print(f"KB Agent: retrieved {len(state.kb_result.retrieved_sources)} sources")
     return state

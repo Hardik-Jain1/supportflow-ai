@@ -29,7 +29,7 @@ RUNS_DIR = Path("runs")
 RUNS_DIR.mkdir(exist_ok=True)
 
 
-def start_run(ticket_text: str, progress_callback=None) -> Dict[str, Any]:
+async def start_run(ticket_text: str, progress_callback=None) -> Dict[str, Any]:
     """
     Start a new workflow run with the given ticket text.
     Executes until pause (human review) or completion.
@@ -65,7 +65,7 @@ def start_run(ticket_text: str, progress_callback=None) -> Dict[str, Any]:
             progress_callback("Classifying ticket...", 0.2)
         
         # Node 1: Triage
-        state = triage_classifier(state)
+        state = await triage_classifier(state)
         history.append({
             "node": "triage",
             "timestamp": datetime.now().isoformat(),
@@ -81,7 +81,7 @@ def start_run(ticket_text: str, progress_callback=None) -> Dict[str, Any]:
             progress_callback("Retrieving knowledge base...", 0.4)
         
         # Node 2: KB Retrieve
-        state = kb_retrieve(state)
+        state = await kb_retrieve(state)
         history.append({
             "node": "kb_retrieve",
             "timestamp": datetime.now().isoformat(),
@@ -95,7 +95,7 @@ def start_run(ticket_text: str, progress_callback=None) -> Dict[str, Any]:
             progress_callback("Drafting reply...", 0.6)
         
         # Node 3: Draft Reply
-        state = draft_reply(state)
+        state = await draft_reply(state)
         history.append({
             "node": "draft_reply",
             "timestamp": datetime.now().isoformat(),
@@ -109,7 +109,7 @@ def start_run(ticket_text: str, progress_callback=None) -> Dict[str, Any]:
             progress_callback("Suggesting actions...", 0.8)
         
         # Node 4: Suggest Actions
-        state = suggest_actions(state)
+        state = await suggest_actions(state)
         history.append({
             "node": "suggest_actions",
             "timestamp": datetime.now().isoformat(),
@@ -129,7 +129,7 @@ def start_run(ticket_text: str, progress_callback=None) -> Dict[str, Any]:
             progress_callback("Finalizing...", 0.9)
         
         # Node 5: Decide Human Review
-        state = decide_human_review(state)
+        state = await decide_human_review(state)
         history.append({
             "node": "decide_human_review",
             "timestamp": datetime.now().isoformat(),
@@ -171,7 +171,7 @@ def start_run(ticket_text: str, progress_callback=None) -> Dict[str, Any]:
         return error_state
 
 
-def resume_run(run_id: str, human_inputs: Dict[str, Any]) -> Dict[str, Any]:
+async def resume_run(run_id: str, human_inputs: Dict[str, Any]) -> Dict[str, Any]:
     """
     Resume a paused workflow run with human inputs.
     
@@ -263,7 +263,7 @@ def resume_run(run_id: str, human_inputs: Dict[str, Any]) -> Dict[str, Any]:
     if state.human_feedback and state.redraft_count < config.max_redrafts:
         previous_draft = state.reply_draft
         
-        state = draft_reply(state)
+        state = await draft_reply(state)
         
         history.append({
             "node": "draft_reply_redraft",
@@ -324,7 +324,7 @@ def resume_run(run_id: str, human_inputs: Dict[str, Any]) -> Dict[str, Any]:
     
     # Continue workflow: Execute actions
     try:
-        state = execute_actions(state)
+        state = await execute_actions(state)
         history.append({
             "node": "execute_actions",
             "timestamp": datetime.now().isoformat(),
@@ -336,7 +336,7 @@ def resume_run(run_id: str, human_inputs: Dict[str, Any]) -> Dict[str, Any]:
             }
         })
         
-        state = post_or_escalate(state)
+        state = await post_or_escalate(state)
         history.append({
             "node": "post_or_escalate",
             "timestamp": datetime.now().isoformat(),
@@ -346,7 +346,7 @@ def resume_run(run_id: str, human_inputs: Dict[str, Any]) -> Dict[str, Any]:
             }
         })
         
-        state = finalize(state)
+        state = await finalize(state)
         history.append({
             "node": "finalize",
             "timestamp": datetime.now().isoformat()

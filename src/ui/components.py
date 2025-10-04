@@ -4,6 +4,7 @@ Contains all display functions for rendering the user interface.
 """
 
 import streamlit as st
+import asyncio
 import json
 from datetime import datetime
 from typing import Dict, Any
@@ -483,10 +484,10 @@ def display_history_and_results(run_state: Dict[str, Any]):
 def resume_with_feedback(run_id: str, edited_reply: str, feedback: str):
     """Resume workflow with human feedback for redraft"""
     with st.spinner("Generating redraft..."):
-        result = resume_run(run_id, {
+        result = asyncio.run(resume_run(run_id, {
             "reply_draft": edited_reply,
             "human_feedback": feedback
-        })
+        }))
         
         st.session_state.run_state = result
         st.session_state.request_redraft = False
@@ -515,10 +516,10 @@ def execute_workflow(run_id: str, state_dict: Dict[str, Any]):
         })
     
     with st.spinner("Executing actions..."):
-        result = resume_run(run_id, {
+        result = asyncio.run(resume_run(run_id, {
             "reply_draft": st.session_state.get("edited_reply", state_dict.get("reply_draft")),
             "actions": action_inputs
-        })
+        }))
         
         st.session_state.run_state = result
         st.session_state.reply_approved = False
@@ -533,7 +534,7 @@ def execute_workflow(run_id: str, state_dict: Dict[str, Any]):
 def escalate_workflow(run_id: str):
     """Escalate workflow to human agent"""
     with st.spinner("Escalating to human agent..."):
-        result = resume_run(run_id, {"escalate": True})
+        result = asyncio.run(resume_run(run_id, {"escalate": True}))
         
         st.session_state.run_state = result
         st.session_state.reply_approved = False
