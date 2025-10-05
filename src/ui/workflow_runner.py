@@ -383,35 +383,93 @@ async def resume_run(run_id: str, human_inputs: Dict[str, Any]) -> Dict[str, Any
         return error_state
 
 
+def get_next_run_number() -> int:
+    """Get the next sequential run number by reading existing files"""
+    max_number = 0
+    for file_path in RUNS_DIR.glob("*.json"):
+        # Extract number from filename pattern: NN_runid.json
+        filename = file_path.stem  # Get filename without extension
+        if "_" in filename:
+            parts = filename.split("_", 1)
+            try:
+                num = int(parts[0])
+                max_number = max(max_number, num)
+            except ValueError:
+                continue
+    return max_number + 1
+
+
 def save_run_state(run_id: str, state: Dict[str, Any]):
-    """Save run state to file"""
-    file_path = RUNS_DIR / f"{run_id}.json"
+    """Save run state to file with sequential numbering"""
+    # Check if file already exists (update case)
+    existing_file = None
+    for file_path in RUNS_DIR.glob("*.json"):
+        try:
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+                if data.get("run_id") == run_id:
+                    existing_file = file_path
+                    break
+        except Exception:
+            continue
+    
+    if existing_file:
+        # Update existing file
+        file_path = existing_file
+    else:
+        # Create new file with sequential number
+        run_number = get_next_run_number()
+        file_path = RUNS_DIR / f"{str(run_number).zfill(2)}_{run_id}.json"
+    
     with open(file_path, 'w') as f:
         json.dump(state, f, indent=2, default=str)
 
 
 def load_run_state(run_id: str) -> Optional[Dict[str, Any]]:
-    """Load run state from file"""
+    """Load run state from file (supports both old and new naming formats)"""
+    # Try new format first: NN_runid.json
+    for file_path in RUNS_DIR.glob(f"*_{run_id}.json"):
+        with open(file_path, 'r') as f:
+            return json.load(f)
+    
+    # Fallback to old format: runid.json
     file_path = RUNS_DIR / f"{run_id}.json"
-    if not file_path.exists():
-        return None
-    with open(file_path, 'r') as f:
-        return json.load(f)
+    if file_path.exists():
+        with open(file_path, 'r') as f:
+            return json.load(f)
+    
+    return None
 
 
 def list_runs() -> list:
-    """List all saved runs"""
+    """List all saved runs, sorted by run number (descending)"""
     runs = []
     for file_path in RUNS_DIR.glob("*.json"):
         try:
             with open(file_path, 'r') as f:
                 run_state = json.load(f)
+                
+                # Extract run number from filename if present
+                run_number = None
+                filename = file_path.stem
+                if "_" in filename:
+                    parts = filename.split("_", 1)
+                    try:
+                        run_number = int(parts[0])
+                    except ValueError:
+                        pass
+                
                 runs.append({
                     "run_id": run_state.get("run_id"),
+                    "run_number": run_number,
                     "status": run_state.get("status"),
                     "created_at": run_state.get("created_at", run_state.get("updated_at")),
                     "ticket_preview": run_state.get("ticket_text", "")[:50] + "..."
                 })
         except Exception:
             continue
-    return sorted(runs, key=lambda x: x.get("created_at", ""), reverse=True)
+    
+    # Sort by run number (descending) - highest number first (latest runs)
+    # For files without run_number, sort by created_at (descending)
+    return sorted(runs, key=lambda x: (x.get("run_number") or 0, x.get("created_at", "")), reverse=True)
+

@@ -21,7 +21,7 @@ class ActionProposal(BaseModel):
     approved: Optional[bool] = None 
 
 class TicketMeta(BaseModel):
-    source: Literal["email", "chat", "web", "api"] = "email"
+    source: Literal["email", "chat", "web", "api", "cli"] = "email"
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     customer_id: Optional[str] = None
     locale: Optional[str] = None

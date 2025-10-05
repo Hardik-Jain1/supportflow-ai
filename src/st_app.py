@@ -97,8 +97,12 @@ def main():
                     "running": "▶️"
                 }.get(run["status"], "❓")
                 
+                # Format display text with run number if available
+                run_number_prefix = f"#{run['run_number']:02d} " if run.get('run_number') else ""
+                display_text = f"{status_icon} {run_number_prefix}{run['run_id']} - {run['status']}"
+                
                 if st.button(
-                    f"{status_icon} {run['run_id']} - {run['status']}",
+                    display_text,
                     key=f"load_{run['run_id']}",
                     use_container_width=True
                 ):
