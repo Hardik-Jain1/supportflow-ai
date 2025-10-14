@@ -47,6 +47,15 @@
     "enable_auto_approval": false,
     "max_ticket_preview_length": 200
   },
+  "vector_db": {
+    "type": "faiss",
+    "faiss": {
+      "index_dir": "agents/faiss_indexes"
+    },
+    "qdrant": {
+      "collection_dir": "agents/qdrant_db"
+    }
+  },
   "ui": {
     "separator_length": 60,
     "action_separator_length": 50,

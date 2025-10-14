@@ -1,5 +1,6 @@
 **/.env
 **/__pycache__
 **/faiss_indexes
-**/chats
+**/qdrant_db
+**/chats_and_bu
 **/runs

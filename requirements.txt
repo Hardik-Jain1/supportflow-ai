@@ -6,6 +6,8 @@ smolagents==0.2.1
 mcp[python]==0.3.1
 acp==0.1.4
 faiss-cpu==1.8.0
+qdrant-client==1.7.3
+langchain-qdrant==0.1.0
 chromadb==0.5.3
 tiktoken==0.7.0
 openai==1.40.0
