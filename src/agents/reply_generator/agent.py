@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 @CrewBase
-class ReplyAgentCrew():
-    """Crew for handling customer support replies."""
+class ReplyGeneratorCrew():
+    """Crew for handling customer support reply generation."""
 
     agents: List[BaseAgent]
     tasks: List[Task]
@@ -103,17 +103,44 @@ class ReplyAgentCrew():
     #     print(f"After kickoff function with result: {result}")
     #     return result
 
-def reply_agent(ticket, context, model = "gemini/gemini-2.5-flash", verbose = False):
-    """Initial drafting function - unchanged for backward compatibility"""
+
+def generate_reply(ticket: str, context: str, model: str = "gemini/gemini-2.5-flash", verbose: bool = False):
+    """
+    Generate an initial reply to a customer support ticket.
+    
+    Args:
+        ticket: The customer support ticket text
+        context: Relevant context from knowledge base
+        model: The LLM model to use
+        verbose: Enable verbose logging
+        
+    Returns:
+        CrewAI output with generated reply
+    """
     inputs = {
         "ticket_text": ticket,
         "context": context,
     }
 
-    return ReplyAgentCrew(model).crew(mode="draft", verbose=verbose).kickoff(inputs)
+    return ReplyGeneratorCrew(model).crew(mode="draft", verbose=verbose).kickoff(inputs)
 
-def redraft_reply_agent(ticket, context, previous_draft, human_feedback, model = "gemini/gemini-2.5-flash", verbose = False):
-    """Redrafting function based on human feedback"""
+
+def redraft_reply(ticket: str, context: str, previous_draft: str, human_feedback: str, 
+                  model: str = "gemini/gemini-2.5-flash", verbose: bool = False):
+    """
+    Redraft a reply based on human feedback.
+    
+    Args:
+        ticket: The customer support ticket text
+        context: Relevant context from knowledge base
+        previous_draft: The previous draft that needs revision
+        human_feedback: Human feedback for improvement
+        model: The LLM model to use
+        verbose: Enable verbose logging
+        
+    Returns:
+        CrewAI output with redrafted reply
+    """
     inputs = {
         "ticket_text": ticket,
         "context": context,
@@ -121,4 +148,4 @@ def redraft_reply_agent(ticket, context, previous_draft, human_feedback, model =
         "human_feedback": human_feedback,
     }
 
-    return ReplyAgentCrew(model).crew(mode="redraft", verbose=verbose).kickoff(inputs) 
+    return ReplyGeneratorCrew(model).crew(mode="redraft", verbose=verbose).kickoff(inputs)

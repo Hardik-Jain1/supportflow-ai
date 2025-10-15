@@ -48,12 +48,12 @@
     "max_ticket_preview_length": 200
   },
   "vector_db": {
-    "type": "faiss",
+    "type": "qdrant",
     "faiss": {
-      "index_dir": "agents/faiss_indexes"
+      "index_dir": "agents/knowledge_base/faiss_indexes"
     },
     "qdrant": {
-      "collection_dir": "agents/qdrant_db"
+      "collection_dir": "agents/knowledge_base/qdrant_db"
     }
   },
   "ui": {

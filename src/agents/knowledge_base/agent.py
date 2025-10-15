@@ -22,9 +22,9 @@ import json
 
 # CONFIG
 DATA_FILE = Path("data/kb/knowledge_base.csv")  # single CSV file with all data
-COLLECTION_DIR = Path("agents/qdrant_db")
+COLLECTION_DIR = Path("agents/knowledge_base/qdrant_db")
 COLLECTION_DIR.mkdir(parents=True, exist_ok=True)
-INDEX_DIR = Path("agents/faiss_indexes")
+INDEX_DIR = Path("agents/knowledge_base/faiss_indexes")
 INDEX_DIR.mkdir(parents=True, exist_ok=True)
 _qdrant_client_instance = None
 
@@ -216,7 +216,7 @@ def create_adaptive_retriever(vectorstore: Any, category: str, collection_size: 
     return retriever
 
 
-def build_retrievers_from_csvs(
+def build_retrievers(
     vector_store_choice: str = "faiss",
     force_chunking: bool = False,
     chunk_size: int = 1500,
@@ -228,7 +228,7 @@ def build_retrievers_from_csvs(
     
     Args:
         vector_store_choice: "faiss" or "qdrant"
-        chunk_documents: Whether to chunk documents
+        force_chunking: Whether to chunk documents
         chunk_size: Size of chunks
         chunk_overlap: Overlap between chunks
         use_adaptive_retrieval: Adapt retrieval params based on collection size
@@ -291,6 +291,7 @@ def build_retrievers_from_csvs(
 
 
 def make_retriever_tools(retrievers: Dict[str, Any]):
+    """Create LangChain tools from retrievers."""
     tools = []
     document_prompt = PromptTemplate(
         input_variables=["page_content", "category", "type", "title"],
@@ -316,7 +317,18 @@ Category: {category}
     return tools
 
 
-def build_agent(retrievers: Dict[str, Any], model: str = "gemini/gemini-2.5-flash", verbose: bool = False) -> AgentExecutor:
+def create_kb_agent(retrievers: Dict[str, Any], model: str = "gemini/gemini-2.5-flash", verbose: bool = False) -> AgentExecutor:
+    """
+    Create a knowledge base agent with retrieval tools.
+    
+    Args:
+        retrievers: Dictionary of category retrievers
+        model: LLM model to use
+        verbose: Enable verbose logging
+        
+    Returns:
+        AgentExecutor instance
+    """
     tools = make_retriever_tools(retrievers)
     llm = ChatLiteLLM(model=model, temperature=0, top_p=0.5)
 
@@ -329,11 +341,14 @@ def build_agent(retrievers: Dict[str, Any], model: str = "gemini/gemini-2.5-flas
     return AgentExecutor(agent=agent, tools=tools, verbose=verbose, handle_parsing_errors=True)
 
 
-def parse_agent2_output_text(xml_text: str, narrative: bool = False) -> str:
+def parse_kb_output_text(xml_text: str, narrative: bool = False) -> str:
     """
-    Parse Agent 2's XML output into a clean narrative format for Agent 3.
+    Parse KB agent's XML output into a clean narrative format.
+    
+    Args:
+        xml_text: XML output from KB agent
+        narrative: If True, return full narrative; if False, return only consolidated context
     """
-
     # Extract individual retrieved sources
     sources = re.findall(
         r'<source retriever="(.*?)">\s*<summary>(.*?)</summary>\s*</source>',
@@ -365,11 +380,17 @@ def parse_agent2_output_text(xml_text: str, narrative: bool = False) -> str:
 
     return "\n".join(narrative_parts)
 
-def parse_agent2_output_json(xml_text: str) -> Dict[str, Any]:
+
+def parse_kb_output(xml_text: str) -> Dict[str, Any]:
     """
-    Parse Agent 2's XML output into a structured JSON format.
-    """
+    Parse KB agent's XML output into a structured JSON format.
     
+    Args:
+        xml_text: XML output from KB agent
+        
+    Returns:
+        Dictionary with sources and consolidated context
+    """
     # Extract individual retrieved sources
     sources = re.findall(
         r'<source retriever="(.*?)">\s*<summary>(.*?)</summary>\s*</source>',

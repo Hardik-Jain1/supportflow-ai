@@ -164,6 +164,9 @@ class Config:
     def display_confidence_decimals(self) -> int:
         return self.get('ui.display_confidence_decimals', 2)
 
+    @property
+    def vector_store_choice(self) -> str:
+        return self.get('vector_db.type', 'faiss')
 
 # Global config instance
 config = Config()

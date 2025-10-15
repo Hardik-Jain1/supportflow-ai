@@ -16,6 +16,7 @@ dependencies = [
     "langgraph>=1.0.0a3",
     "litellm>=1.75.8",
     "matplotlib>=3.10.5",
+    "mcp[cli]>=1.17.0",
     "networkx>=3.5",
     "numpy>=2.3.2",
     "pandas>=2.3.1",

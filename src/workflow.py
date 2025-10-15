@@ -3,16 +3,16 @@ from typing import Literal, List, Optional, Dict, Any
 from pydantic import BaseModel, Field
 from datetime import datetime, timezone
 from langgraph.graph import StateGraph, END
-from agents.triage_agent import triage_agent, parse_triage_result
-from agents.kb_agent import build_retrievers_from_csvs, build_agent, parse_agent2_output_text, parse_agent2_output_json
-from agents.reply_agent.crew import ReplyAgentCrew, reply_agent, redraft_reply_agent
-from agents.action_suggester_agent import action_suggester_agent, parse_action_suggester_result
-from agents.action_executor_agent import action_executor_agent
+from agents.triage import classify_ticket, parse_classification
+from agents.knowledge_base import build_retrievers, create_kb_agent, parse_kb_output_text, parse_kb_output
+from agents.reply_generator import ReplyGeneratorCrew, generate_reply, redraft_reply
+from agents.action_suggester import suggest_actions, parse_suggestions
+from agents.executor import execute_actions as execute_actions_async
 from utils.config import config
 
 # Initialize KB agent with configured model
-kb_retrievers = build_retrievers_from_csvs()
-kb_agent = build_agent(kb_retrievers, model=config.kb_model)
+kb_retrievers = build_retrievers()
+kb_agent = create_kb_agent(kb_retrievers, model=config.kb_model)
 
 # State definition
 class KBHit(BaseModel):
@@ -107,8 +107,8 @@ def get_narrative_context(kb_result: KBResult) -> str:
 # Node implementations
 # 1) Triage classification
 def triage_classifier(state: TicketState) -> TicketState:
-    agent1_output = triage_agent(state.ticket_text, model=config.triage_model)
-    agent1_output_json = parse_triage_result(agent1_output.choices[0].message.content)
+    agent1_output = classify_ticket(state.ticket_text, model=config.triage_model)
+    agent1_output_json = parse_classification(agent1_output.choices[0].message.content)
     if agent1_output_json:
         cat_id = agent1_output_json.get("category").strip()
         state.category = config.category_mapping.get(cat_id)
@@ -128,7 +128,7 @@ def kb_retrieve(state: TicketState) -> TicketState:
         "category": state.category
     })["output"]
 
-    agent2_parsed_json = parse_agent2_output_json(agent2_output_xml)
+    agent2_parsed_json = parse_kb_output(agent2_output_xml)
     if agent2_parsed_json:
         # Convert parsed sources to KBHit objects
         kb_hits = []
@@ -151,7 +151,7 @@ def draft_reply(state: TicketState) -> TicketState:
     
     if state.human_feedback and state.redraft_count < config.max_redrafts:
         # Redraft based on human feedback using the enhanced crew
-        agent3_output = redraft_reply_agent(
+        agent3_output = redraft_reply(
             ticket=state.ticket_text,
             context=agent3_context,
             previous_draft=state.reply_draft,
@@ -165,7 +165,7 @@ def draft_reply(state: TicketState) -> TicketState:
         state.human_feedback = None
     else:
         # Initial draft using existing workflow
-        agent3_output = reply_agent(state.ticket_text, agent3_context, model=config.reply_model)
+        agent3_output = generate_reply(state.ticket_text, agent3_context, model=config.reply_model)
         print(f"Reply Agent: initial draft reply of length {len(agent3_output.raw)}")
     
     state.reply_draft = agent3_output.raw
@@ -184,8 +184,8 @@ def suggest_actions(state: TicketState) -> TicketState:
         "urgency": state.urgency,
         "narrative_context": get_narrative_context(state.kb_result)
     }
-    agent4_output = action_suggester_agent(agent4_inputs, model=config.action_suggester_model)
-    agent4_output_json = parse_action_suggester_result(agent4_output)
+    agent4_output = suggest_actions(agent4_inputs, model=config.action_suggester_model)
+    agent4_output_json = parse_suggestions(agent4_output)
 
     if agent4_output_json:
         for action_item in agent4_output_json:
@@ -301,7 +301,7 @@ def execute_actions(state: TicketState) -> TicketState:
                 "name": a.action,
                 "arguments": a.params
             })
-    agent5_output = action_executor_agent(actions)
+    agent5_output = execute_actions_async(actions)
 
     print("\n" + "="*config.action_separator_length)
     print("ACTION EXECUTION RESULTS\n")

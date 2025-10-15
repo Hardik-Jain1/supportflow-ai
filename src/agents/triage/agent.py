@@ -11,7 +11,17 @@ with open('config/prompts/agent_1/user_prompt.txt', 'r') as file:
 with open('config/prompts/agent_1/system_prompt.txt', 'r') as file:
     system_prompt = file.read()
 
-def triage_agent(ticket: str, model= "gemini/gemini-2.5-flash") -> str:
+def classify_ticket(ticket: str, model= "gemini/gemini-2.5-flash") -> str:
+    """
+    Classify a customer support ticket into category and urgency.
+    
+    Args:
+        ticket: The customer support ticket text
+        model: The LLM model to use for classification
+        
+    Returns:
+        LiteLLM completion response with classification
+    """
     messages = [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_prompt.replace("{TICKET}", ticket)}
@@ -25,7 +35,7 @@ def triage_agent(ticket: str, model= "gemini/gemini-2.5-flash") -> str:
     return output
 
 
-def parse_triage_result(llm_output: str) -> Optional[Dict[str, str]]:
+def parse_classification(llm_output: str) -> Optional[Dict[str, str]]:
     """
     Parse XML output from the triage agent.
     

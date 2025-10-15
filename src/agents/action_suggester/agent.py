@@ -1,7 +1,7 @@
 import litellm
 import os
 from dotenv import load_dotenv
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 from langchain_core.prompts import PromptTemplate
 import re
 load_dotenv()
@@ -11,7 +11,17 @@ def read_file_content(file_path: str) -> str:
     with open(file_path, 'r') as file:
         return file.read()
     
-def action_suggester_agent(inputs, model= "gemini/gemini-2.5-flash") -> str:
+def suggest_actions(inputs: Dict, model: str = "gemini/gemini-2.5-flash") -> str:
+    """
+    Suggest actions based on ticket analysis.
+    
+    Args:
+        inputs: Dictionary containing ticket_text, category, urgency, and narrative_context
+        model: The LLM model to use
+        
+    Returns:
+        LLM response with suggested actions
+    """
     user_prompt_template = read_file_content('config/prompts/agent_4/user_prompt.txt')
     system_prompt_template = read_file_content('config/prompts/agent_4/system_prompt.txt')
     action_catalog = read_file_content('config/prompts/agent_4/action_catalog.txt')
@@ -49,7 +59,7 @@ def action_suggester_agent(inputs, model= "gemini/gemini-2.5-flash") -> str:
     return output.choices[0].message.content
 
 
-def parse_action_suggester_result(llm_output: str) -> Optional[list]:
+def parse_suggestions(llm_output: str) -> Optional[List[Dict]]:
     """
     Parse XML output from the action suggester agent.
     
@@ -57,7 +67,7 @@ def parse_action_suggester_result(llm_output: str) -> Optional[list]:
         llm_output: String containing the LLM response with XML
         
     Returns:
-        Dictionary with parsed actions or None if parsing fails
+        List of action dictionaries or None if parsing fails
     """
     try:
         # Extract content from the completion response
