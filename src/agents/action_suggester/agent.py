@@ -98,6 +98,9 @@ def parse_suggestions(llm_output: str) -> Optional[List[Dict]]:
             # Parse arguments
             arguments = {}
             arg_matches = re.finditer(r'<arg key="([^"]+)">([^<]*)</arg>', action_content)
+            # Parse reasoning
+            reasoning_match = re.search(r'<reasoning>(.*?)</reasoning>', action_content, re.DOTALL)
+            reasoning = reasoning_match.group(1).strip() if reasoning_match else ""
             
             for arg_match in arg_matches:
                 arg_key = arg_match.group(1)
@@ -106,7 +109,8 @@ def parse_suggestions(llm_output: str) -> Optional[List[Dict]]:
             
             actions.append({
                 "name": action_name,
-                "arguments": arguments
+                "arguments": arguments,
+                "reasoning": reasoning
             })
         
         return actions

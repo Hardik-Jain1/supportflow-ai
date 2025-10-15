@@ -1,26 +1,18 @@
 {
-  "system": {
-    "max_redrafts": 2,
-    "max_retries": 2,
-    "default_language": "en",
-    "default_urgency": "medium",
-    "default_category": "general"
-  },
   "models": {
     "triage_model": "ollama/qwen2.5:7b",
     "kb_model": "gemini/gemini-2.5-flash",
     "reply_model": "ollama/qwen2.5:7b",
     "action_suggester_model": "ollama/qwen2.5:7b"
   },
-  "actions": {
-    "risky_actions": ["refund", "credit_note", "account_cancel"],
-    "non_risky_autosafe": ["label", "assign_queue", "create_jira"],
-    "auto_approval_confidence_threshold": 0.8
-  },
-  "confidence_thresholds": {
-    "high_confidence": 0.8,
-    "medium_confidence": 0.6,
-    "low_confidence": 0.4
+  "vector_db": {
+    "type": "qdrant",
+    "faiss": {
+      "index_dir": "agents/knowledge_base/faiss_indexes"
+    },
+    "qdrant": {
+      "collection_dir": "agents/knowledge_base/qdrant_db"
+    }
   },
   "categories": {
     "mapping": {
@@ -42,19 +34,27 @@
       "4": "critical"
     }
   },
+  "system": {
+    "max_redrafts": 2,
+    "max_retries": 2,
+    "default_language": "en",
+    "default_urgency": "medium",
+    "default_category": "general"
+  },
+  "actions": {
+    "risky_actions": ["initiate_refund", "reset_password", "update_account_info", "create_support_ticket"],
+    "non_risky_autosafe": ["check_order_status", "no_action_required"],
+    "auto_approval_confidence_threshold": 0.8
+  },
+  "confidence_thresholds": { 
+    "high_confidence": 0.8,
+    "medium_confidence": 0.6,
+    "low_confidence": 0.4
+  },
   "workflow": {
     "force_human_review": true,
-    "enable_auto_approval": false,
+    "enable_auto_approval": true,
     "max_ticket_preview_length": 200
-  },
-  "vector_db": {
-    "type": "qdrant",
-    "faiss": {
-      "index_dir": "agents/knowledge_base/faiss_indexes"
-    },
-    "qdrant": {
-      "collection_dir": "agents/knowledge_base/qdrant_db"
-    }
   },
   "ui": {
     "separator_length": 60,

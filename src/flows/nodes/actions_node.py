@@ -35,15 +35,15 @@ async def suggest_actions(state: TicketState) -> TicketState:
             proposals.append(ActionProposal(
                 action=action_item.get("name", ""),
                 params=action_item.get("arguments", {}),
-                rationale=f"Suggested by action agent based on ticket analysis",
+                rationale=action_item.get("reasoning", ""),
                 approved=None
             ))
 
     # Auto-approval policy for non-risky actions when high confidence
-    # if config.enable_auto_approval:
-    #     for p in proposals:
-    #         if p.action in config.non_risky_autosafe and (state.category_conf >= config.auto_approval_confidence_threshold and state.reply_conf >= config.auto_approval_confidence_threshold):
-    #             p.approved = True
+    if config.enable_auto_approval:
+        for p in proposals:
+            if p.action in config.non_risky_autosafe and state.category_conf >= config.auto_approval_confidence_threshold: # and state.reply_conf >= config.auto_approval_confidence_threshold
+                p.approved = True
 
     state.actions = proposals
     print(f"Action Suggester Agent: proposed {len(state.actions)} actions")
