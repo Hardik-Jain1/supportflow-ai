@@ -17,7 +17,7 @@ async def execute_actions(actions_parsed: List[Dict[str, Any]]) -> List[Dict[str
     
     server_params = StdioServerParameters(
         command="python",
-        args=["agents/executor/tools.py"]
+        args=["agents/executor/mcp_tools.py"]
     )
     
     results = []

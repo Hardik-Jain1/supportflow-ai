@@ -174,7 +174,7 @@ def display_ticket_classification(state_dict: Dict[str, Any]):
         st.metric(
             "Category",
             category.upper(),
-            f"{category_conf * 100:.1f}% confidence"
+            f"{category_conf:.1f}% confidence"
         )
         
         if category_conf >= config.high_confidence:
@@ -190,7 +190,7 @@ def display_ticket_classification(state_dict: Dict[str, Any]):
         st.metric(
             "Urgency",
             urgency.upper(),
-            f"{urgency_conf * 100:.1f}% confidence"
+            f"{urgency_conf:.1f}% confidence"
         )
         
         urgency_colors = {

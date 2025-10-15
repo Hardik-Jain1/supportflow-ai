@@ -5,7 +5,7 @@ import json
 mcp = FastMCP("action_executor")
 
 @mcp.tool()
-def initiate_refund(order_id: str, amount: float, reason: str) -> str:
+def initiate_refund(order_id: str, amount: str, reason: str) -> str:
     """Initiate a refund for an order."""
     result = {
         "action": "initiate_refund",
