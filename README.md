@@ -182,33 +182,7 @@ graph TB
 
 **CrewAI Team Structure**:
 
-```mermaid
-flowchart TB
-    subgraph INITIAL["Initial Draft Mode"]
-        I1[Ticket + KB Context] --> D1[Drafter Agent]
-        D1 --> R1[Refiner Agent]
-        R1 --> O1[Final Draft]
-    end
-    
-    subgraph REDRAFT["Redraft Mode"]
-        I2[Previous Draft +<br/>Human Feedback] --> A2[Feedback Analyzer]
-        A2 --> D2[Redraft Agent]
-        D2 --> R2[Refiner Agent]
-        R2 --> O2[Improved Draft]
-    end
-    
-    style I1 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    style I2 fill:#fff3e0,stroke:#f57c00,stroke-width:2px
-    style D1 fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
-    style D2 fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
-    style A2 fill:#fff9c4,stroke:#f9a825,stroke-width:2px
-    style R1 fill:#f8bbd0,stroke:#c2185b,stroke-width:2px
-    style R2 fill:#f8bbd0,stroke:#c2185b,stroke-width:2px
-    style O1 fill:#b2dfdb,stroke:#00796b,stroke-width:2px
-    style O2 fill:#b2dfdb,stroke:#00796b,stroke-width:2px
-    style INITIAL fill:#f0f9ff,stroke:#0277bd,stroke-width:2px
-    style REDRAFT fill:#fffbf0,stroke:#f57f17,stroke-width:2px
-```
+<img width="2087" height="693" alt="crew" src="https://github.com/user-attachments/assets/aa5f8b9c-863d-4370-8bc7-35ed51d1b2a6" />
 
 
 #### 4. **Action Suggester Agent** (Agent 4)
@@ -238,64 +212,7 @@ flowchart TB
 
 **Framework**: LangGraph (StateGraph)
 
-```mermaid
-flowchart TD
-    START([Ticket Submitted]) --> TRIAGE
-    
-    TRIAGE[Agent 1: Triage<br/>Classify Category & Urgency]
-    TRIAGE --> KB
-    
-    KB[Agent 2: KB Retrieval<br/>Search 8 Category-Specific KBs]
-    KB --> REPLY
-    
-    REPLY[Agent 3: Reply Generator<br/>CrewAI: Drafter + Refiner]
-    REPLY --> ACTION
-    
-    ACTION[Agent 4: Action Suggester<br/>Propose Actions + Parameters]
-    ACTION --> DECIDE
-    
-    DECIDE{Needs Human<br/>Review?}
-    DECIDE -->|Low Confidence<br/>or Risky Action| HUMAN
-    DECIDE -->|High Confidence<br/>Safe Actions| EXEC
-    
-    HUMAN[Human Review<br/>Approve/Edit/Feedback]
-    HUMAN --> FEEDBACK{Feedback<br/>Provided?}
-    
-    FEEDBACK -->|Yes & Count < Max| REDRAFT[Redraft Reply<br/>CrewAI: Feedback Analyzer<br/>+ Redraft + Refiner]
-    REDRAFT --> REPLY
-    
-    FEEDBACK -->|No or Max Reached| APPROVED{Actions Approved?}
-    APPROVED -->|Yes| EXEC
-    APPROVED -->|No - Escalate| ESCALATE
-    
-    EXEC[Agent 5: Execute Actions<br/>MCP Tools]
-    EXEC --> POST
-    
-    POST[Post Reply to<br/>Ticketing System]
-    POST --> FINAL
-    
-    ESCALATE[Create Escalation<br/>Ticket]
-    ESCALATE --> FINAL
-    
-    FINAL[Finalize<br/>Log Metrics & Save State]
-    FINAL --> END([Complete])
-    
-    style START fill:#4caf50,color:#fff
-    style END fill:#4caf50,color:#fff
-    style TRIAGE fill:#2196f3,color:#fff
-    style KB fill:#2196f3,color:#fff
-    style REPLY fill:#2196f3,color:#fff
-    style ACTION fill:#2196f3,color:#fff
-    style EXEC fill:#2196f3,color:#fff
-    style HUMAN fill:#ff9800,color:#fff
-    style REDRAFT fill:#ff9800,color:#fff
-    style DECIDE fill:#9c27b0,color:#fff
-    style FEEDBACK fill:#9c27b0,color:#fff
-    style APPROVED fill:#9c27b0,color:#fff
-    style POST fill:#00bcd4,color:#fff
-    style ESCALATE fill:#f44336,color:#fff
-    style FINAL fill:#00bcd4,color:#fff
-```
+<img width="2172" height="2558" alt="workflow_mermaid" src="https://github.com/user-attachments/assets/4112b547-cbb6-469b-82f1-d8f8be73af4a" />
 
 **Key Workflow Features**:
 - **Conditional Branching**: Human review triggered by low confidence or risky actions
