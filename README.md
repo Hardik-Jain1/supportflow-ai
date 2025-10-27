@@ -14,8 +14,9 @@
 - [Overview](#-overview)
 - [Problem and The Solution](#-problem-and-the-solution)
 - [System Architecture](#-system-architecture)
+  - [System Overview (Diagram)](#system-overview)
   - [Five Core Agents](#five-core-agents)
-  - [Workflow Orchestration](#workflow-orchestration)
+  - [Workflow Orchestration (Diagram)](#workflow-orchestration)
   - [Communication Protocols](#communication-protocols)
 - [Key Features](#-key-features)
 - [Tech Stack](#-tech-stack)
@@ -63,6 +64,93 @@ This system provides **end-to-end automation** of customer support workflows:
 
 ## 🏗️ System Architecture
 
+### System Overview
+
+```mermaid
+graph TB
+    subgraph "User Interface Layer"
+        UI[Streamlit UI<br/>Interactive Web Interface]
+        API[ACP REST API<br/>Port 8001]
+    end
+    
+    subgraph "Orchestration Layer"
+        LG[LangGraph Workflow<br/>State Management & Flow Control]
+    end
+    
+    subgraph "Agent Layer"
+        A1[Agent 1: Triage<br/>LiteLLM]
+        A2[Agent 2: KB Retrieval<br/>LangChain ReAct]
+        A3[Agent 3: Reply Generator<br/>CrewAI Team]
+        A4[Agent 4: Action Suggester<br/>LiteLLM]
+        A5[Agent 5: Executor<br/>MCP Client]
+    end
+    
+    subgraph "Protocol Servers"
+        ACP[ACP Server<br/>Agent Communication]
+        MCP[MCP Server<br/>Tool Execution]
+    end
+    
+    subgraph "Data Layer"
+        KB[(Knowledge Base<br/>8 Categories)]
+        VS1[FAISS<br/>Vector Store]
+        VS2[Qdrant<br/>Vector Store]
+        STATE[State Persistence<br/>JSON Files]
+    end
+    
+    subgraph "External Services"
+        LLM[LLM Providers<br/>OpenAI/Gemini/Ollama]
+        EMB[Embeddings<br/>Google Gemini]
+    end
+    
+    %% User Interface connections
+    UI --> LG
+    API --> ACP
+    
+    %% Orchestration to Protocol to Agents
+    LG --> ACP
+    ACP --> A1 & A2 & A3 & A4 & A5
+    
+    %% Agent sequential flow
+    A1 --> A2 --> A3 --> A4 --> A5
+    
+    %% Agent to External Services
+    A1 -.-> LLM
+    A2 -.-> LLM
+    A3 -.-> LLM
+    A4 -.-> LLM
+    
+    %% Agent to Data Layer
+    A2 --> VS1 & VS2
+    VS1 & VS2 --> KB
+    VS1 & VS2 -.-> EMB
+    
+    %% Action Executor to MCP
+    A5 --> MCP
+    
+    %% State Management
+    LG --> STATE
+    
+    %% Styling
+    style UI fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    style API fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    style LG fill:#fff4e1,stroke:#f57f17,stroke-width:3px
+    style A1 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style A2 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style A3 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style A4 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style A5 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style ACP fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+    style MCP fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+    style KB fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style VS1 fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style VS2 fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style STATE fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style LLM fill:#fff9c4,stroke:#f9a825,stroke-width:2px
+    style EMB fill:#fff9c4,stroke:#f9a825,stroke-width:2px
+```
+
+---
+
 ### Five Core Agents
 
 #### 1. **Triage Agent** (Agent 1)
@@ -92,6 +180,37 @@ This system provides **end-to-end automation** of customer support workflows:
   - Supports up to N redraft iterations (configurable, default: 2)
 - **Models**: `ollama/qwen2.5:7b` (configurable)
 
+**CrewAI Team Structure**:
+
+```mermaid
+flowchart TB
+    subgraph INITIAL["Initial Draft Mode"]
+        I1[Ticket + KB Context] --> D1[Drafter Agent]
+        D1 --> R1[Refiner Agent]
+        R1 --> O1[Final Draft]
+    end
+    
+    subgraph REDRAFT["Redraft Mode"]
+        I2[Previous Draft +<br/>Human Feedback] --> A2[Feedback Analyzer]
+        A2 --> D2[Redraft Agent]
+        D2 --> R2[Refiner Agent]
+        R2 --> O2[Improved Draft]
+    end
+    
+    style I1 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style I2 fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style D1 fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    style D2 fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    style A2 fill:#fff9c4,stroke:#f9a825,stroke-width:2px
+    style R1 fill:#f8bbd0,stroke:#c2185b,stroke-width:2px
+    style R2 fill:#f8bbd0,stroke:#c2185b,stroke-width:2px
+    style O1 fill:#b2dfdb,stroke:#00796b,stroke-width:2px
+    style O2 fill:#b2dfdb,stroke:#00796b,stroke-width:2px
+    style INITIAL fill:#f0f9ff,stroke:#0277bd,stroke-width:2px
+    style REDRAFT fill:#fffbf0,stroke:#f57f17,stroke-width:2px
+```
+
+
 #### 4. **Action Suggester Agent** (Agent 4)
 - **Framework**: LiteLLM + Action Catalog
 - **Input**: Ticket + Category + Urgency + KB Context
@@ -119,85 +238,71 @@ This system provides **end-to-end automation** of customer support workflows:
 
 **Framework**: LangGraph (StateGraph)
 
+```mermaid
+flowchart TD
+    START([Ticket Submitted]) --> TRIAGE
+    
+    TRIAGE[Agent 1: Triage<br/>Classify Category & Urgency]
+    TRIAGE --> KB
+    
+    KB[Agent 2: KB Retrieval<br/>Search 8 Category-Specific KBs]
+    KB --> REPLY
+    
+    REPLY[Agent 3: Reply Generator<br/>CrewAI: Drafter + Refiner]
+    REPLY --> ACTION
+    
+    ACTION[Agent 4: Action Suggester<br/>Propose Actions + Parameters]
+    ACTION --> DECIDE
+    
+    DECIDE{Needs Human<br/>Review?}
+    DECIDE -->|Low Confidence<br/>or Risky Action| HUMAN
+    DECIDE -->|High Confidence<br/>Safe Actions| EXEC
+    
+    HUMAN[Human Review<br/>Approve/Edit/Feedback]
+    HUMAN --> FEEDBACK{Feedback<br/>Provided?}
+    
+    FEEDBACK -->|Yes & Count < Max| REDRAFT[Redraft Reply<br/>CrewAI: Feedback Analyzer<br/>+ Redraft + Refiner]
+    REDRAFT --> REPLY
+    
+    FEEDBACK -->|No or Max Reached| APPROVED{Actions Approved?}
+    APPROVED -->|Yes| EXEC
+    APPROVED -->|No - Escalate| ESCALATE
+    
+    EXEC[Agent 5: Execute Actions<br/>MCP Tools]
+    EXEC --> POST
+    
+    POST[Post Reply to<br/>Ticketing System]
+    POST --> FINAL
+    
+    ESCALATE[Create Escalation<br/>Ticket]
+    ESCALATE --> FINAL
+    
+    FINAL[Finalize<br/>Log Metrics & Save State]
+    FINAL --> END([Complete])
+    
+    style START fill:#4caf50,color:#fff
+    style END fill:#4caf50,color:#fff
+    style TRIAGE fill:#2196f3,color:#fff
+    style KB fill:#2196f3,color:#fff
+    style REPLY fill:#2196f3,color:#fff
+    style ACTION fill:#2196f3,color:#fff
+    style EXEC fill:#2196f3,color:#fff
+    style HUMAN fill:#ff9800,color:#fff
+    style REDRAFT fill:#ff9800,color:#fff
+    style DECIDE fill:#9c27b0,color:#fff
+    style FEEDBACK fill:#9c27b0,color:#fff
+    style APPROVED fill:#9c27b0,color:#fff
+    style POST fill:#00bcd4,color:#fff
+    style ESCALATE fill:#f44336,color:#fff
+    style FINAL fill:#00bcd4,color:#fff
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                      CUSTOMER SUPPORT WORKFLOW                   │
-└─────────────────────────────────────────────────────────────────┘
 
-  ┌──────────┐
-  │  START   │  (User submits ticket)
-  └────┬─────┘
-       │
-       ▼
-  ┌────────────────┐
-  │ 1. Triage      │  Classify category + urgency
-  │    Agent       │  
-  └────┬───────────┘
-       │
-       ▼
-  ┌────────────────┐
-  │ 2. KB Retrieval│  Search knowledge bases
-  │    Agent       │  (8 category-specific retrievers)
-  └────┬───────────┘
-       │
-       ▼
-  ┌────────────────┐
-  │ 3. Reply       │  Draft customer response
-  │    Generator   │  (CrewAI multi-agent team)
-  └────┬───────────┘
-       │
-       ▼
-  ┌────────────────┐
-  │ 4. Action      │  Suggest system actions
-  │    Suggester   │  
-  └────┬───────────┘
-       │
-       ▼
-  ┌────────────────┐
-  │  Decide Review?│  
-  │  (conditional) │──────┐
-  └────┬───────────┘      │
-       │ needs_review=True│ needs_review=False
-       │                  │
-       ▼                  │
-  ┌────────────────┐      │
-  │ 5. HUMAN       │      │
-  │    REVIEW      │      │
-  │  (PAUSE/WAIT)  │      │
-  └────┬───────────┘      │
-       │                  │
-       │ feedback? ────┐  │
-       │ (redraft loop)│  │
-       │               │  │
-       │ Yes: redraft_count < max
-       │               │  │
-       └───────────────┘  │
-       │ No/Max reached   │
-       │                  │
-       ├──────────────────┘
-       │
-       ▼
-  ┌────────────────┐
-  │ 6. Execute     │  Run approved actions
-  │    Actions     │  (via MCP tools)
-  └────┬───────────┘
-       │
-       ▼
-  ┌────────────────┐
-  │ 7. Post Reply  │  Submit to ticketing system
-  │    or Escalate │  
-  └────┬───────────┘
-       │
-       ▼
-  ┌────────────────┐
-  │ 8. Finalize    │  Log metrics, save state
-  └────┬───────────┘
-       │
-       ▼
-  ┌──────────┐
-  │   END    │
-  └──────────┘
-```
+**Key Workflow Features**:
+- **Conditional Branching**: Human review triggered by low confidence or risky actions
+- **Redraft Loop**: Up to N iterations of AI-assisted reply refinement
+- **State Persistence**: Full workflow state saved at each step
+- **Error Handling**: Per-node retry logic with configurable limits
+- **Pause/Resume**: Workflow pauses at human review, resumes on approval
 
 ---
 
