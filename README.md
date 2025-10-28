@@ -1,4 +1,4 @@
-# 🎫 Customer Support Triage & Action Automation System
+# 🎫 SupportFlow AI – Agentic Customer Support Automation
 
 > **An advanced multi-agent AI system for automated customer support ticket handling from classification to knowledge retrieval, reply drafting, action suggestion, and execution with human-in-the-loop oversight.**
 
@@ -32,13 +32,14 @@
 
 ## 🌟 Overview
 
-The **Customer Support Triage & Action Automation System** is a production-grade, modular AI platform that automates end-to-end customer support workflows. Built with modern frameworks like **LangGraph**, **CrewAI**, and **LangChain**, it combines multi-agent orchestration with protocol-based interoperability (**ACP** and **MCP**) to deliver intelligent, scalable, and human-supervised automation.
+**SupportFlow AI** is an end-to-end agentic platform that automates customer support workflows, from ticket triage and knowledge retrieval to reply drafting, action suggestions, and safe execution with human oversight.
 
-This system demonstrates:
-- **Advanced AI Engineering**: Multi-agent coordination, LLM orchestration, and retrieval-augmented generation (RAG)
-- **Clean Architecture**: Modular design with separation of concerns, extensible agent framework
-- **Production Readiness**: Human-in-the-loop workflows, error handling, state persistence, and comprehensive logging
-- **Protocol Interoperability**: ACP (Agent Communication Protocol) and MCP (Model Context Protocol) for cross-framework communication
+**Key capabilities:**
+- Automated classification (category + urgency) with confidence scoring
+- RAG-powered responses using vector stores (FAISS/Qdrant)
+- Multi-agent reply generation with optional redraft cycles
+- Structured action proposals and MCP-based execution with approval gates
+- LangGraph orchestration with state persistence and error handling
 
 ---
 
@@ -387,6 +388,7 @@ customer-support-triage-agent/
 
 - **Python 3.11+** 
 - **Git**
+- **uv** (recommended) or **pip**
 - **API Keys** (at least one):
   - Google AI Studio (Gemini) - Recommended for embeddings + LLM
   - OpenAI API key (for GPT models)
@@ -394,6 +396,54 @@ customer-support-triage-agent/
   - Or use **Ollama** for local LLMs (free, no API key needed)
 
 ### Installation Steps
+
+#### Option A: Using uv (Recommended)
+
+1. **Install uv** (if not already installed)
+   ```bash
+   # macOS/Linux
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   
+   # Windows
+   powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
+
+2. **Clone the repository**
+   ```bash
+   git clone https://github.com/Hardik-Jain1/customer-support-triage-agent.git
+   cd customer-support-triage-agent
+   ```
+
+3. **Install dependencies with uv**
+   ```bash
+   uv sync
+   ```
+   This will automatically create a virtual environment and install all dependencies from `pyproject.toml`.
+
+4. **Set up environment variables**
+   
+   Create a `.env` file in the project root:
+   ```bash
+   # LLM API Keys (choose at least one)
+   GOOGLE_API_KEY=your_gemini_api_key_here
+   OPENAI_API_KEY=your_openai_key_here
+   ANTHROPIC_API_KEY=your_anthropic_key_here
+   ```
+
+5. **Prepare knowledge base**
+   
+   Ensure the knowledge base CSV exists:
+   ```bash
+   # The system expects: data/kb/knowledge_base.csv
+   # Sample KB data is included. You can customize or expand it. 
+   ```
+
+6. **Build vector indexes** (optional - auto-generated on first run)
+   ```bash
+   uv run python -c "from agents.knowledge_base import build_retrievers; build_retrievers()"
+   ```
+
+#### Option B: Using pip (Traditional)
 
 1. **Clone the repository**
    ```bash
@@ -457,6 +507,7 @@ This starts the Agent Communication Protocol server on `http://localhost:8001`
 
 **2. Start the MCP Server** (in another separate terminal):
 ```bash
+cd src
 python agents/executor/mcp_tools.py
 ```
 This starts the Model Context Protocol server for action execution tools.
