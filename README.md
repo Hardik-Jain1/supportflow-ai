@@ -9,6 +9,14 @@
 
 ---
 
+## 🎥 Video Demo
+
+https://github.com/user-attachments/assets/58a70463-0014-45e2-8ab7-ba161bbba51b
+
+> **See the system in action**: Watch a complete workflow from ticket submission through automated triage, knowledge retrieval, AI-powered reply generation, action suggestions, and human-in-the-loop approval.
+
+---
+
 ## 📑 Table of Contents
 
 - [Overview](#-overview)
