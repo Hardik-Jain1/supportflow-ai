@@ -33,7 +33,7 @@ def main():
     # Apply custom CSS
     st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
     
-    st.title("🎫 Customer Support Triage Multi-Agent System")
+    st.title("🎫 SupportFlow AI – Agentic Customer Support Automation")
     st.markdown("---")
     
     # Initialize session state

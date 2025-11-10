@@ -1,6 +1,6 @@
 # 🎫 SupportFlow AI – Agentic Customer Support Automation
 
-> **An advanced multi-agent AI system for automated customer support ticket handling from classification to knowledge retrieval, reply drafting, action suggestion, and execution with human-in-the-loop oversight.**
+> **An Agentic AI system that uses multiple specialized AI agents to handle customer tickets end-to-end, from classification and knowledge retrieval to drafting replies, suggesting actions, and executing them, all with human-in-the-loop oversight.**
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![LangGraph](https://img.shields.io/badge/LangGraph-1.0-green.svg)](https://github.com/langchain-ai/langgraph)
